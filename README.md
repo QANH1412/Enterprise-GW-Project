@@ -2,6 +2,7 @@
 
 
 QAnh notes:
+
 Database: chứa cơ sở dữ liệu, cái này là script của database. Database t xài microsoftSQL. 
 
 
