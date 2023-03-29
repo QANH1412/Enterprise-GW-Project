@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IdeaManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Ideas" Relationship="Self.FK_Idea_Category" FromRole="Category" ToRole="Idea" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="IdeaId" Type="Int32" />
+    <NavigationProperty Name="Idea" Relationship="Self.FK_Comment_Idea" FromRole="Comment" ToRole="Idea" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Department" FromRole="Department" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Idea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="TopicId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Idea_Category" FromRole="Idea" ToRole="Category" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Idea" FromRole="Idea" ToRole="Comment" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Idea_User" FromRole="Idea" ToRole="User" />
+    <NavigationProperty Name="Reacts" Relationship="Self.FK_React_Idea" FromRole="Idea" ToRole="React" />
+    <NavigationProperty Name="Views" Relationship="Self.FK_View_Idea" FromRole="Idea" ToRole="View" />
+    <NavigationProperty Name="Topic" Relationship="IdeaManagementModel.FK_Idea_Topic" FromRole="Idea" ToRole="Topic" />
+  </EntityType>
+  <EntityType Name="React">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="React1" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="IdeaId" Type="Int32" />
+    <NavigationProperty Name="Idea" Relationship="Self.FK_React_Idea" FromRole="React" ToRole="Idea" />
+    <NavigationProperty Name="User" Relationship="Self.FK_React_User" FromRole="React" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_User_Department" FromRole="User" ToRole="Department" />
+    <NavigationProperty Name="Ideas" Relationship="Self.FK_Idea_User" FromRole="User" ToRole="Idea" />
+    <NavigationProperty Name="Reacts" Relationship="Self.FK_React_User" FromRole="User" ToRole="React" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Views" Relationship="Self.FK_View_User" FromRole="User" ToRole="View" />
+  </EntityType>
+  <EntityType Name="View">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitTime" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="IdeaId" Type="Int32" />
+    <NavigationProperty Name="Idea" Relationship="Self.FK_View_Idea" FromRole="View" ToRole="Idea" />
+    <NavigationProperty Name="User" Relationship="Self.FK_View_User" FromRole="View" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Idea_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Idea" Type="Self.Idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Idea">
+    <End Role="Idea" Type="Self.Idea" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Idea_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Idea" Type="Self.Idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_React_Idea">
+    <End Role="Idea" Type="Self.Idea" Multiplicity="0..1" />
+    <End Role="React" Type="Self.React" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="React">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_View_Idea">
+    <End Role="Idea" Type="Self.Idea" Multiplicity="0..1" />
+    <End Role="View" Type="Self.View" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="View">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_React_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="React" Type="Self.React" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="React">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_View_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="View" Type="Self.View" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="View">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IdeaManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Ideas" EntityType="Self.Idea" />
+    <EntitySet Name="Reacts" EntityType="Self.React" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Views" EntityType="Self.View" />
+    <AssociationSet Name="FK_Idea_Category" Association="Self.FK_Idea_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Idea" EntitySet="Ideas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Idea" Association="Self.FK_Comment_Idea">
+      <End Role="Idea" EntitySet="Ideas" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Idea_User" Association="Self.FK_Idea_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Idea" EntitySet="Ideas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_React_Idea" Association="Self.FK_React_Idea">
+      <End Role="Idea" EntitySet="Ideas" />
+      <End Role="React" EntitySet="Reacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_View_Idea" Association="Self.FK_View_Idea">
+      <End Role="Idea" EntitySet="Ideas" />
+      <End Role="View" EntitySet="Views" />
+    </AssociationSet>
+    <AssociationSet Name="FK_React_User" Association="Self.FK_React_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="React" EntitySet="Reacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_View_User" Association="Self.FK_View_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="View" EntitySet="Views" />
+    </AssociationSet>
+    <EntitySet Name="Topics" EntityType="IdeaManagementModel.Topic" />
+    <AssociationSet Name="FK_Idea_Topic" Association="IdeaManagementModel.FK_Idea_Topic">
+      <End Role="Topic" EntitySet="Topics" />
+      <End Role="Idea" EntitySet="Ideas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ClosureDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinalClosureDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Ideas" Relationship="IdeaManagementModel.FK_Idea_Topic" FromRole="Topic" ToRole="Idea" />
+  </EntityType>
+  <Association Name="FK_Idea_Topic">
+    <End Type="IdeaManagementModel.Topic" Role="Topic" Multiplicity="0..1" />
+    <End Type="IdeaManagementModel.Idea" Role="Idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

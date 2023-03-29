@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IdeaManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Datetime" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="IdeaId" Type="int" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Idea">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FilePath" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Datetime" Type="datetime" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="TopicId" Type="int" />
+  </EntityType>
+  <EntityType Name="React">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="React" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="IdeaId" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClosureDate" Type="datetime" Nullable="false" />
+    <Property Name="FinalClosureDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleId" Type="varchar" MaxLength="30" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitTime" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="IdeaId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Comment_Idea">
+    <End Role="Idea" Type="Self.Idea" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Idea_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Idea" Type="Self.Idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Idea_Topic">
+    <End Role="Topic" Type="Self.Topic" Multiplicity="0..1" />
+    <End Role="Idea" Type="Self.Idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Idea_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Idea" Type="Self.Idea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_React_Idea">
+    <End Role="Idea" Type="Self.Idea" Multiplicity="0..1" />
+    <End Role="React" Type="Self.React" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="React">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_React_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="React" Type="Self.React" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="React">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_View_Idea">
+    <End Role="Idea" Type="Self.Idea" Multiplicity="0..1" />
+    <End Role="View" Type="Self.View" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="View">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_View_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="View" Type="Self.View" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="View">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IdeaManagementModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Idea" EntityType="Self.Idea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="React" EntityType="Self.React" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View" EntityType="Self.View" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Comment_Idea" Association="Self.FK_Comment_Idea">
+      <End Role="Idea" EntitySet="Idea" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Idea_Category" Association="Self.FK_Idea_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Idea" EntitySet="Idea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Idea_Topic" Association="Self.FK_Idea_Topic">
+      <End Role="Topic" EntitySet="Topic" />
+      <End Role="Idea" EntitySet="Idea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Idea_User" Association="Self.FK_Idea_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Idea" EntitySet="Idea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_React_Idea" Association="Self.FK_React_Idea">
+      <End Role="Idea" EntitySet="Idea" />
+      <End Role="React" EntitySet="React" />
+    </AssociationSet>
+    <AssociationSet Name="FK_React_User" Association="Self.FK_React_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="React" EntitySet="React" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_View_Idea" Association="Self.FK_View_Idea">
+      <End Role="Idea" EntitySet="Idea" />
+      <End Role="View" EntitySet="View" />
+    </AssociationSet>
+    <AssociationSet Name="FK_View_User" Association="Self.FK_View_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="View" EntitySet="View" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
