@@ -1,0 +1,65 @@
+﻿@model WebApplication2.Models.Idea
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Details</h2>
+
+<div>
+    <h4>Idea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate })
+</p>

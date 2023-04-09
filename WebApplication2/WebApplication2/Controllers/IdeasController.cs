@@ -86,6 +86,7 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Gán giá trị Topic ID
                 idea.TopicId = Id;
                 db.Ideas.Add(idea);
                 db.SaveChanges();

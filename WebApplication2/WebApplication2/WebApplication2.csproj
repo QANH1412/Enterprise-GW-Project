@@ -129,6 +129,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\IdeasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StaffTopicsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -137,6 +146,7 @@
     <Compile Include="Controllers\StaffTopicsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Filter\AdminAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,6 +240,41 @@
     <Content Include="Models\IdeaManagement.edmx.diagram">
       <DependentUpon>IdeaManagement.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\About.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Contact.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Topics\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\StaffTopics\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Ideas\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Ideas\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Ideas\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -288,6 +333,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

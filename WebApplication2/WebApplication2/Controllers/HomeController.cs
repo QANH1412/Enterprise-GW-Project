@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,8 @@ namespace WebApplication2.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+
+
             return View();
         }
 
@@ -37,9 +40,40 @@ namespace WebApplication2.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(User log)
+        public ActionResult Login(string email, string password)
         {
-            var user = db.Users.Where(x => x.Email == log.Email && x.Password == log.Password).Count();
+            // check db
+            IdeaManagementEntities db = new IdeaManagementEntities();
+            var account = db.Users.SingleOrDefault(m => m.Email.ToLower() == email.ToLower() && m.Password == password   );
+
+            // check code
+            if (account != null)
+            {
+                // tạo session và gán giá trị
+                Session["user"] = account;
+                string role = account.RoleId;
+
+
+                if (role == "Admin")
+                {
+                    return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+
+                }
+
+
+            }
+            else
+            {
+                TempData["error"] = "Not correct";
+                return View();
+            }
+
+
+            /*var user = db.Users.Where(x => x.Email == log.Email && x.Password == log.Password).Count();
             if (user > 0)
             {
                 return RedirectToAction("Index");
@@ -47,9 +81,10 @@ namespace WebApplication2.Controllers
             else
             {
                 return View();
-            }
+            }*/
 
         }
         
+       
     }
 }
