@@ -1,8 +1,10 @@
 ﻿@model WebApplication2.Models.Idea
 
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 <h2>Details</h2>
 
@@ -10,6 +12,69 @@
     <h4>Idea</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            <span> View</span>
+        </dt>
+
+        <dt>
+            @ViewBag.ViewCount
+        </dt>
+
+        <dt>
+            <span> Like </span>
+        </dt>
+
+        <dt>
+            @{
+                if (@ViewBag.React.React1 < 0)
+                {
+                    <span> 0 </span>
+                }
+                else
+                {
+                    @ViewBag.React.React1
+                }
+            }
+        </dt>
+
+        <dt>
+            @using (Html.BeginForm("LikeButton", "Ideas", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId, reactReact = ViewBag.React.React1 }, FormMethod.Post))
+            {
+                <input type="submit" name="submit" value="Like" />
+            }
+        </dt>
+
+        <dt>
+            @using (Html.BeginForm("DisLikeButton", "Ideas", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId, reactReact = ViewBag.React.React1 }, FormMethod.Post))
+            {
+                <input type="submit" name="submit" value="DisLike" />
+            }
+        </dt>
+
+
+        <dt>
+            <span> DisLike </span>
+        </dt>
+
+        <dt>
+            @{
+                if (@ViewBag.React.React1 > 0)
+                {
+                    <span> 0 </span>
+                }
+                else
+                {
+                    @ViewBag.React.React1
+                }
+            }
+        </dt>
+
+        <dt>
+
+        </dt>
+
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Text)
         </dt>

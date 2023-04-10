@@ -1,0 +1,43 @@
+﻿@model WebApplication2.Models.React
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>React</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.React1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.React1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Idea.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idea.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Fullname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -82,7 +82,7 @@
                 @Html.DisplayFor(modelItem => item.Topic.Name)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id, TopicId = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id, TopicId = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate, userId = admin.Id }) |
             </td>
         </tr>
     }
