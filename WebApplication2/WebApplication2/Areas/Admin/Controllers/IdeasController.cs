@@ -77,7 +77,6 @@ namespace WebApplication2.Areas.Admin.Controllers
             //View
             viewCount = (from item in db.Views 
                          where item.IdeaId == id 
-                         where item.UserId == userId 
                          select item).Count();
             viewCount += 1;
             ViewBag.ViewCount = viewCount;  
@@ -92,36 +91,46 @@ namespace WebApplication2.Areas.Admin.Controllers
             db.Views.Add(view);
             db.SaveChanges();
 
-             // React : like and dislike
-           /*  var reactCount = (from item in db.Reacts 
-                               where item.IdeaId == id 
-                               where item.UserId == userId
-                               select item).SingleOrDefault();*/
-            var reactCount = db.Reacts.SingleOrDefault(m => m.IdeaId == id && m.UserId == userId);
-            
+            // React : like and dislike
 
-
-            if (reactCount == null) {
-                ViewBag.React = new React
-                {
-                    UserId = userId,
-                    IdeaId = id,
-                    React1 = 0
-
-                };
-
+           var reactCount = (from item in db.Reacts
+                         where item.IdeaId == id
+                         select item.React1).Sum();
+            if(reactCount == null){
+                reactCount = 0;
             }
-            else
-            {
-                ViewBag.React = new React
-                {
-                    UserId = userId,
-                    IdeaId = id,
-                    React1 = reactCount.React1
+            ViewBag.React = new React
+                            {
+                                UserId = userId,
+                                IdeaId = id,
+                                React1 = reactCount
 
-                };
-               
-            }
+                            };
+
+
+
+            /*            var reactCount = db.Reacts.SingleOrDefault(m => m.IdeaId == id);
+            */            /*if (reactCount == null) {
+                            ViewBag.React = new React
+                            {
+                                UserId = userId,
+                                IdeaId = id,
+                                React1 = 0
+
+                            };
+
+                        }
+                        else
+                        {
+                            ViewBag.React = new React
+                            {
+                                UserId = userId,
+                                IdeaId = id,
+                                React1 = reactCount.React1
+
+                            };
+
+                        }*/
 
             //generate code
             if (id == null)
@@ -141,24 +150,34 @@ namespace WebApplication2.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult LikeButton(int IdeaId, int TopicId, string Name, DateTime ClosureDate, DateTime FinalClosureDate, int UserId, int reactReact)
         {
-            reactReact += 1;
-            var react = db.Reacts.SingleOrDefault(m => m.IdeaId == IdeaId && m.UserId == UserId);
+            var react = db.Reacts.SingleOrDefault(m => m.UserId == UserId && m.IdeaId == IdeaId);
 
-            if(react == null)
-            {
-                React reactt = new React
-                {
-                    UserId = UserId,
-                    IdeaId = IdeaId,
-                    React1 = reactReact
-                };
-                db.Reacts.Add(reactt);
-                db.SaveChanges();
+            if (react == null) // nếu chưa có người dùng trong database sẽ add vào database với 1 like
+            {     
+                    React reactt = new React
+                    {
+                        UserId = UserId,
+                        IdeaId = IdeaId,
+                        React1 = 1
+                    };
+                    db.Reacts.Add(reactt);
+                    db.SaveChanges();
+             
             }
-            else
+            else  // nếu có người dùng thì sẽ 
             {
-                react.React1 = reactReact;
-                db.SaveChanges();
+                if(react.React1 < 1) // nếu react người dùng < 1 thì dc phép + 1 like
+                {
+                    react.React1 += 1;
+                    db.SaveChanges();
+                }
+                else // ngược lại thì người dùng sẽ phải -1 like
+                {
+                    react.React1 -= 1;
+
+                    db.SaveChanges();
+                }
+               
             }
 
 
@@ -170,7 +189,6 @@ namespace WebApplication2.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult DisLikeButton(int IdeaId, int TopicId, string Name, DateTime ClosureDate, DateTime FinalClosureDate, int UserId, int reactReact)
         {
-            reactReact -= 1;
             var react = db.Reacts.SingleOrDefault(m => m.IdeaId == IdeaId && m.UserId == UserId);
 
             if (react == null)
@@ -179,15 +197,24 @@ namespace WebApplication2.Areas.Admin.Controllers
                 {
                     UserId = UserId,
                     IdeaId = IdeaId,
-                    React1 = reactReact
+                    React1 = -1
                 };
                 db.Reacts.Add(reactt);
                 db.SaveChanges();
             }
             else
             {
-                react.React1 = reactReact;
-                db.SaveChanges();
+                if (react.React1 > -1) // nếu react người dùng > -1 thì sẽ dc phép dislike ngược lại thì là sẽ trở về 0
+                {
+                    react.React1 -= 1;
+                    db.SaveChanges();
+                }
+                else //
+                {
+                    react.React1 += 1;
+
+                    db.SaveChanges();
+                }
             }
 
 
