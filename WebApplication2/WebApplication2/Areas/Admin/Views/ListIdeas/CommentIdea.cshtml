@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication2.Models.Idea>
+@using System.Web;
+@using WebApplication2.Models;
+@using System.Linq;
+
+
+@{
+    ViewBag.Title = "CommentIdea";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    IdeaManagementEntities db = new IdeaManagementEntities();
+    
+}
+
+<h2>Latest Idea</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Text
+        </th>
+        <th>
+            FilePath
+        </th>
+        <th>
+            DateTime
+        </th>
+        <th>
+            CategoryName
+        </th>
+        <th>
+            UserName
+        </th>
+        <th>
+            TopicName
+        </th>
+        <th>Latest Comment Time</th> 
+
+    </tr>
+
+    @{
+        var Comment = (from item in db.Comments
+                       orderby item.Datetime descending
+                       select item).ToList();
+        if (Comment != null)
+        {
+            foreach (var comment in Comment)
+            {
+                var Idea = (from item in db.Ideas
+                            where item.Id == comment.IdeaId
+                            select item).ToList();
+
+                if (Idea != null)
+                    {
+                        foreach(var idea in Idea)
+                        {
+                            <tr>
+                                <td>@idea.Text</td>
+                                <td>@idea.FilePath</td>
+                                <td>@idea.Datetime</td>
+                                <td>@idea.CategoryId</td>
+                                <td>@idea.UserId</td>
+                                <td>@idea.TopicId</td>
+                                <td>@comment.Datetime</td>
+                            </tr>
+                        }
+                    }
+            }
+        }
+
+
+
+    }
+
+
+
+</table>

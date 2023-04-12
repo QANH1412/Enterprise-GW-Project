@@ -1,8 +1,13 @@
-﻿@model IEnumerable<WebApplication2.Models.Topic>
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<WebApplication2.Models.Topic>
+
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    // @model IEnumerable<WebApplication2.Models.Topic>
 }
 <h2>Index</h2>
 
@@ -13,18 +18,57 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ClosureDate)
+            ClosureDate
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FinalClosureDate)
+            FinalClosureDate
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            var i = 1;
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.ClosureDate</td>
+                <td>@item.FinalClosureDate</td>
+                <td>
+                    @Html.ActionLink("View Idea", "Index", "Ideas", new { id = item.Id, name = item.Name, closuredate = item.ClosureDate, finalclosuredate = item.FinalClosureDate }, new { @class = "nav-link" })
+                    <a href="@Url.Action("ExportToExcel", "StaffTopics", new {id = item.Id })" >Export Excel</a>   
+                </td>
+            </tr>
+          
+        }
+    }
+
+
+
+
+</table>
+
+<br/>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = 5}))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -37,10 +81,17 @@
                 @Html.DisplayFor(modelItem => item.FinalClosureDate)
             </td>
             <td>
-                @Html.ActionLink("View Idea", "Index", "Ideas", new { id = item.Id, name = item.Name, closuredate = item.ClosureDate, finalclosuredate = item.FinalClosureDate }, new { @class = "nav-link" }) |
+                @{
+                    if (item.FinalClosureDate <= DateTime.Now)
+                    {
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("View Idea", "Index", "Ideas", new { id = item.Id, name = item.Name, closuredate = item.ClosureDate, finalclosuredate = item.FinalClosureDate }, new { @class = "nav-link" })
+                    }
+                }
 
             </td>
         </tr>
-    }
-
-</table>
+    }*@

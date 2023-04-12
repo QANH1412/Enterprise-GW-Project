@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Datetime" Type="datetime" Nullable="false" />
           <Property Name="UserId" Type="int" />
@@ -35,7 +35,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FilePath" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="FilePath" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="Datetime" Type="datetime" Nullable="false" />
           <Property Name="UserId" Type="int" />
           <Property Name="CategoryId" Type="int" />
@@ -72,7 +72,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="ClosureDate" Type="datetime" Nullable="false" />
           <Property Name="FinalClosureDate" Type="datetime" Nullable="false" />
         </EntityType>
@@ -322,7 +322,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FilePath" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FilePath" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="CategoryId" Type="Int32" />
@@ -572,7 +572,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="ClosureDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FinalClosureDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Ideas" Relationship="IdeaManagementModel.FK_Idea_Topic" FromRole="Topic" ToRole="Idea" />

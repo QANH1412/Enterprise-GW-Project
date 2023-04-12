@@ -3,13 +3,18 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var admin = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+    int id = ViewBag.Topic.Id;
+    string name = ViewBag.Topic.Name;
+    DateTime closureDate = ViewBag.Topic.ClosureDate;
+    DateTime finalClosureDate = ViewBag.Topic.FinalClosureDate;
 
 
 }
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Ideas",  new { id = id, name = name, closureDate = closureDate, finalClosureDate = finalClosureDate, UserId = admin.Id }, FormMethod.Post, new {enctype ="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
 
@@ -28,7 +33,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FilePath, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="file" id="imgFile" name="imgFile" class="form-control" />
+
+                @*                @Html.EditorFor(model => model.FilePath, new { htmlAttributes = new { @class = "form-control" } })
+                *@
                 @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,12 +70,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate })
+    @Html.ActionLink("Back to List", "Index", new { id = id, name = name, closureDate = closureDate, finalClosureDate = finalClosureDate })
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
 
 
 

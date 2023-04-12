@@ -1,17 +1,33 @@
 ﻿@model IEnumerable<WebApplication2.Models.Idea>
+@using System.Linq;
+@using System.Net;
+@using System.Web;
+@using WebApplication2.Models;
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     var admin = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
-
+    IdeaManagementEntities db = new IdeaManagementEntities();
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", new { id = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate, userId = admin.Id })
-</p>
+@{
+    if (@ViewBag.Topic.FinalClosureDate <= DateTime.Now)
+    {
+
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", new { id = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate, userId = admin.Id })
+        </p>
+    }
+
+
+}
+
 
 
 <dl class="dl-horizontal">
@@ -43,20 +59,15 @@
             @Html.DisplayNameFor(model => model.Text)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FilePath)
+            View
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Datetime)
+            Like
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            DisLike
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Fullname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Topic.Name)
-        </th>
+
         <th></th>
     </tr>
 
@@ -67,19 +78,50 @@
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FilePath)
+                @{
+                    var viewCount = (from Item in db.Views
+                                     where Item.IdeaId == item.Id
+                                     select Item).Count();
+                    ViewBag.ViewCount = viewCount;
+                }
+                @ViewBag.ViewCount
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Datetime)
+                @{
+                    var reactCount = (from Item in db.Reacts
+                                      where Item.IdeaId == item.Id
+                                      select Item.React1).Sum();
+                    if (reactCount == null)
+                    {
+                        reactCount = 0;
+                    }
+                    ViewBag.reactCount = reactCount;
+
+                    if (@ViewBag.reactCount < 0)
+                    {
+                        <span> 0 </span>
+                    }
+                    else
+                    {
+                        @ViewBag.reactCount
+                    }
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Fullname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Topic.Name)
+                @{
+                    if (@ViewBag.reactCount > 0)
+                    {
+                        <span> 0 </span>
+                    }
+                    else
+                    {
+                        int reactDisLike = ViewBag.reactCount;
+                        reactDisLike = reactDisLike * -1;
+                        ViewBag.ReactDisLike = reactDisLike;
+
+                        @ViewBag.ReactDisLike
+                    }
+                }
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.Id, TopicId = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate, userId = admin.Id }) |

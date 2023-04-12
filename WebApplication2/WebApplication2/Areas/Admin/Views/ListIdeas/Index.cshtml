@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication2.Models.Idea>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Most Popular Idea
+        </th>
+        <th>
+            Most View Idea
+        </th>
+        <th>
+            Latest Comment Idea
+        </th>
+
+        <th>
+            Latest Idea
+        </th>
+
+    </tr>
+
+
+    <tr>
+      <td>
+            @Html.ActionLink("Most popular idea", "PopularIdea")
+        </td>
+      <td>
+          @Html.ActionLink("Most View idea", "ViewIdea")
+
+      </td>
+      <td>
+          @Html.ActionLink("Latest Comment idea", "CommentIdea")
+
+      </td>
+      <td>
+          @Html.ActionLink("Latest  idea", "LatestIdea")
+
+      </td>
+    </tr>
+
+
+</table>

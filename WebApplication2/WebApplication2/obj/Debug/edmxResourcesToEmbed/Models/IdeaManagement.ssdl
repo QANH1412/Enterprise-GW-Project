@@ -11,7 +11,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Datetime" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" />
@@ -30,7 +30,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="FilePath" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="FilePath" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="Datetime" Type="datetime" Nullable="false" />
     <Property Name="UserId" Type="int" />
     <Property Name="CategoryId" Type="int" />
@@ -67,7 +67,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="ClosureDate" Type="datetime" Nullable="false" />
     <Property Name="FinalClosureDate" Type="datetime" Nullable="false" />
   </EntityType>

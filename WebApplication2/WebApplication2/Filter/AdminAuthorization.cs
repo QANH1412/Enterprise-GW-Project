@@ -28,9 +28,12 @@ namespace WebApplication2.Filter
             {
                 filterContext.Result = new HttpUnauthorizedResult();
             }
-            else if (admin.RoleId != "Admin")
+            else 
             {
+                if (admin.RoleId != "Admin" && admin.RoleId != "Manager")
+                {
                     filterContext.Result = new HttpUnauthorizedResult();
+                }
             }
            
 

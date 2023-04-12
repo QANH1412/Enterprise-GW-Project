@@ -34,7 +34,7 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="FilePath" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="UserId" Type="Int32" />
     <Property Name="CategoryId" Type="Int32" />
@@ -284,7 +284,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
     <Property Name="ClosureDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="FinalClosureDate" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Ideas" Relationship="IdeaManagementModel.FK_Idea_Topic" FromRole="Topic" ToRole="Idea" />

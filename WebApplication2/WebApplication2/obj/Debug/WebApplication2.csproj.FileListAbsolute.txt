@@ -164,3 +164,13 @@ E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\obj\Deb
 E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\obj\Debug\WebApplication2.csproj.CopyComplete
 E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\obj\Debug\WebApplication2.dll
 E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\obj\Debug\WebApplication2.pdb
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\PagedList.dll
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\PagedList.Mvc.dll
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\PagedList.xml
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\PagedList.Mvc.xml
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\EPPlus.dll
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\EPPlus.Interfaces.dll
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\EPPlus.System.Drawing.dll
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\Microsoft.IO.RecyclableMemoryStream.dll
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\EPPlus.xml
+E:\COMP1640\GITHUB\Enterprise-GW-Project\WebApplication2\WebApplication2\bin\Microsoft.IO.RecyclableMemoryStream.xml

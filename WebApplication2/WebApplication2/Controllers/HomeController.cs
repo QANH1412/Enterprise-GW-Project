@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
@@ -54,7 +55,7 @@ namespace WebApplication2.Controllers
                 string role = account.RoleId;
 
 
-                if (role == "Admin")
+                if (role == "Admin" || role == "Manager")
                 {
                     return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
                 }
@@ -85,6 +86,13 @@ namespace WebApplication2.Controllers
 
         }
         
+        public ActionResult Logout()
+        {
+            Session.Remove("user");
+
+            FormsAuthentication.SignOut();
+            return Redirect("Login");
+        }
        
     }
 }

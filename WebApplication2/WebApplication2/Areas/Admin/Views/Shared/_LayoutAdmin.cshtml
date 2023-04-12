@@ -26,9 +26,15 @@
                     <li>@Html.ActionLink("Categories", "Index", "Categories", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Submisson", "Index", "Topics", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Staff Submisson", "Index", "StaffTopics", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Statistics", "Index", "Statistics", new { area = "Admin" }, new { @class = "nav-link" })</li>
+
                     <li>
                         @{ var admin = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
-                            <span> @admin.Fullname</span> }
+                            @admin.Fullname }
+                    </li>
+
+                    <li>
+                        <a href="~/Home/Logout"> LOG OUT </a>
                     </li>
                 </ul>
             </div>

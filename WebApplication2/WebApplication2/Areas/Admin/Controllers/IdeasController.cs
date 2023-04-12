@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using System.Xml.Linq;
 using WebApplication2.Filter;
 using WebApplication2.Models;
+using System.IO;
 
 namespace WebApplication2.Areas.Admin.Controllers
 {
@@ -105,7 +106,7 @@ namespace WebApplication2.Areas.Admin.Controllers
                                 IdeaId = id,
                                 React1 = reactCount
 
-                            };
+                   };
 
 
 
@@ -132,6 +133,17 @@ namespace WebApplication2.Areas.Admin.Controllers
 
                         }*/
 
+            // comment
+
+            
+            var commentCount = (from item in db.Comments
+                                where item.IdeaId == id
+                                select item).ToList();
+            ViewBag.Comment = commentCount;
+
+
+
+
             //generate code
             if (id == null)
             {
@@ -146,6 +158,27 @@ namespace WebApplication2.Areas.Admin.Controllers
 
             return View(idea);
         }
+
+        [HttpPost]
+        public ActionResult InputComment(int IdeaId, int TopicId, string Name, DateTime ClosureDate, DateTime FinalClosureDate, int UserId, string Text)
+        {
+            if (Text !="") {
+                Comment comment = new Comment
+                {
+                    Text = Text,
+                    IdeaId = IdeaId,
+                    UserId = UserId,
+                    Datetime = DateTime.Now
+                };
+
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            
+
+            return RedirectToRoute(new { controller = "Ideas", action = "Index", id = TopicId, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });;
+        }
+
 
         [HttpPost]
         public ActionResult LikeButton(int IdeaId, int TopicId, string Name, DateTime ClosureDate, DateTime FinalClosureDate, int UserId, int reactReact)
@@ -277,7 +310,7 @@ namespace WebApplication2.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Text,FilePath,Datetime,UserId,CategoryId,TopicId")] Idea idea, int Id, string Name, DateTime ClosureDate, DateTime FinalClosureDate, int userId)
+        public ActionResult Create([Bind(Include = "Id,Text,FilePath,Datetime,UserId,CategoryId,TopicId")] Idea idea, int Id, string Name, DateTime ClosureDate, DateTime FinalClosureDate, int userId, HttpPostedFileBase imgFile)
         {
             if (ModelState.IsValid)
             {
@@ -285,6 +318,14 @@ namespace WebApplication2.Areas.Admin.Controllers
                 idea.TopicId = Id;
                 idea.UserId = userId;
 
+                // filepath
+                string path = "";
+                if (imgFile.FileName.Length > 0)
+                {
+                    path = "~/UploadFile/" + Path.GetFileName(imgFile.FileName);
+                    imgFile.SaveAs(Server.MapPath(path));
+                }
+                idea.FilePath = path;
 
                 db.Ideas.Add(idea);
                 db.SaveChanges();

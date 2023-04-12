@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Filter;
 using WebApplication2.Models;
 
 namespace WebApplication2.Areas.Admin.Controllers
 {
+    [AdminAuthorization]
     public class ReactsController : Controller
     {
         private IdeaManagementEntities db = new IdeaManagementEntities();
