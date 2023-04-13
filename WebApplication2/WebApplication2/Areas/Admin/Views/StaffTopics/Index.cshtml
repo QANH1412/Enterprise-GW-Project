@@ -40,8 +40,9 @@
                 <td>@item.FinalClosureDate</td>
                 <td>
                     @Html.ActionLink("View Idea", "Index", "Ideas", new { id = item.Id, name = item.Name, closuredate = item.ClosureDate, finalclosuredate = item.FinalClosureDate }, new { @class = "nav-link" })
-                    <a href="@Url.Action("ExportToExcel", "StaffTopics", new {id = item.Id })" >Export Excel</a>   
-                </td>
+                    <a href="@Url.Action("ExportToExcel", "StaffTopics", new {id = item.Id })" >Export Excel</a> 
+@*                    <a href="@Url.Action("GenerateAndDownloadZip", "StaffTopics")" >Export ZIP</a> 
+*@                </td>
             </tr>
           
         }

@@ -15,6 +15,7 @@ using WebApplication2.Filter;
 using WebApplication2.Models;
 using System.IO;
 
+
 namespace WebApplication2.Areas.Admin.Controllers
 {
     [AdminAuthorization]
@@ -173,8 +174,29 @@ namespace WebApplication2.Areas.Admin.Controllers
 
                 db.Comments.Add(comment);
                 db.SaveChanges();
+
+
+                // send email notification
+                var IdeaUserId = (from item in db.Ideas
+                                  where item.Id == IdeaId
+                                  select item.UserId).FirstOrDefault();
+
+                var emailList = (from item in db.Users
+                             where item.Id == IdeaUserId
+                                 select item.Email).ToList();
+                string subjectTiltle = "Email notification";
+                string body = "One Comment has been sent to your idea";
+
+                foreach (var EmailList in emailList)
+                {
+                    WebMail.Send(EmailList, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
+
+                }
+
             }
+
             
+
 
             return RedirectToRoute(new { controller = "Ideas", action = "Index", id = TopicId, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });;
         }
@@ -322,13 +344,27 @@ namespace WebApplication2.Areas.Admin.Controllers
                 string path = "";
                 if (imgFile.FileName.Length > 0)
                 {
-                    path = "~/UploadFile/" + Path.GetFileName(imgFile.FileName);
+                    path = "~/Images/" + Path.GetFileName(imgFile.FileName);
                     imgFile.SaveAs(Server.MapPath(path));
+
                 }
                 idea.FilePath = path;
 
                 db.Ideas.Add(idea);
                 db.SaveChanges();
+
+                // send email notification
+                var emailList = (from item in db.Users
+                                 where item.RoleId == "Coordinator"
+                                 select item.Email).ToList();
+                string subjectTiltle = "Email notification";
+                string body = "One Idea has been add to database";
+
+                foreach(var EmailList in emailList)
+                {
+                    WebMail.Send(EmailList, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
+
+                }
                 return RedirectToRoute(new { controller = "Ideas", action = "Index", id = Id, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });
             }
 

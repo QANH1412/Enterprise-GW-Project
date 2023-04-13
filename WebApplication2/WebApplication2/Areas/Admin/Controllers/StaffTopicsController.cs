@@ -1,10 +1,13 @@
-﻿using OfficeOpenXml;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.AspNetCore.Hosting;
+using OfficeOpenXml;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,6 +23,63 @@ namespace WebApplication2.Areas.Admin.Controllers
     public class StaffTopicsController : Controller
     {
         private IdeaManagementEntities db = new IdeaManagementEntities();
+        private IHostingEnvironment _oIHostingEnvironment;
+
+
+        /*public FileResult GenerateAndDownloadZip()
+        {
+            var webRoot = _oIHostingEnvironment.WebRootPath;
+            var FileName = "MyZip.zip";
+            var tempOutput = webRoot + "/UploadFile" + FileName;
+
+            using (ZipOutputStream oZipOutputStream = new ZipOutputStream(System.IO.File.Create(tempOutput)))
+            {
+                oZipOutputStream.SetLevel(9);
+
+                byte[] buffer = new byte[4096];
+
+                var FileList = new List<string>();
+
+                FileList.Add(webRoot + "/Images/Screenshot.jpg");
+
+                for (int i = 0; i < FileList.Count; i++)
+                {
+                    ZipEntry entry = new ZipEntry(Path.GetFileName(FileList[i]));
+                    entry.DateTime = DateTime.Now;
+                    entry.IsUnicodeText = true;
+                    oZipOutputStream.PutNextEntry(entry);
+
+                    using (FileStream oFileStream = System.IO.File.OpenRead(FileList[i]))
+                    {
+                        int sourceBytes;
+                        do
+                        {
+                            sourceBytes = oFileStream.Read(buffer, 0, buffer.Length);
+                            oZipOutputStream.Write(buffer, 0, sourceBytes); 
+                        } while (sourceBytes > 0);
+                    }
+
+                }
+
+                oZipOutputStream.Finish();
+                oZipOutputStream.Flush();
+                oZipOutputStream.Close();
+            }
+
+            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutput);
+            if (System.IO.File.Exists(tempOutput))
+            {
+                System.IO.File.Delete(tempOutput);
+            }
+
+            if(finalResult == null || !finalResult.Any()) {
+                throw new Exception(String.Format("Nothing"));
+            }
+
+            return File(finalResult, "application/zip", FileName);
+        }*/
+
+
 
         // GET: StaffTopics
         public ActionResult Index(int? page, int? pageSize)
