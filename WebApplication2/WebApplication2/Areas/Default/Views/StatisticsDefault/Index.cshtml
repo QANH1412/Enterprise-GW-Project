@@ -1,0 +1,59 @@
+﻿
+@model IEnumerable<WebApplication2.Models.Department>
+@using System.Data.Entity;
+@using System.Linq;
+@using System.Net;
+@using System.Web;
+@using WebApplication2.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_LayoutDefault.cshtml";
+    var User = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+}
+
+<h2>Statics</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @{
+                    IdeaManagementEntities db = new IdeaManagementEntities();
+                    var userList = (from x in db.Users
+                                    where x.DepartmentId == item.Id
+                                    select x).ToList();
+                    ViewBag.userList = userList;
+                    var userLists = ViewBag.userList;
+                    int i = 0;
+
+                    foreach (var UserLists in userLists)
+                    {
+                        int UserListsId = UserLists.Id;
+                        var IdeaCount = (from x in db.Ideas
+                                         where x.UserId == UserListsId
+                                         select x).Count();
+                        i = i + IdeaCount;
+                    }
+                    ViewBag.IdeaCount = i;
+                }
+                @ViewBag.IdeaCount
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using WebApplication2.Filter;
+using WebApplication2.Models;
+
+namespace WebApplication2.Areas.Default.Controllers
+{
+    [CoordinatorAuthorization]
+    public class DepartmentsDefaultController : Controller
+    {
+
+        private IdeaManagementEntities db = new IdeaManagementEntities();
+
+        // GET: Default/DepartmentsDefault
+        public ActionResult Index()
+        {
+            return View(db.Departments.ToList());
+        }
+
+        // GET: Default/DepartmentsDefault/Details/5
+        public ActionResult Details(int? id)
+        {
+            
+            return View();
+        }
+
+       
+
+        // GET: Default/DepartmentsDefault/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Department department = db.Departments.Find(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            return View(department);
+        }
+
+        // POST: Default/DepartmentsDefault/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Name")] Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(department).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(department);
+        }
+
+        // GET: Default/DepartmentsDefault/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Department department = db.Departments.Find(id);
+            if (department == null)
+            {
+                return HttpNotFound();
+            }
+            return View(department);
+        }
+
+        // POST: Default/DepartmentsDefault/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Department department = db.Departments.Find(id);
+            db.Departments.Remove(department);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

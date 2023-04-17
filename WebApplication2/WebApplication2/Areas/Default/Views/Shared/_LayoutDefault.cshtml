@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("Application name", "Index", "HomeDefaults", new { area = "Default" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "HomeDefaults", new { area = "Default" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "HomeDefaults", new { area = "Default" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "HomeDefaults", new { area = "Default" }, new { @class = "nav-link" })</li>
+                    @{
+                        var accountRole = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+                        if (accountRole.RoleId == "Coordinator")
+                        {
+                            <li>@Html.ActionLink("Submisson", "Index", "TopicsDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Staff Submisson", "Index", "StaffTopicsDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Statistics", "Index", "StatisticsDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Rating idea", "Index", "ListIdeasDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Staff Submisson", "Index", "StaffTopicsDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+                            <li>@Html.ActionLink("Rating idea", "Index", "ListIdeasDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+                        }
+
+                    }
+
+
+
+                    <li>
+                        @{ var account = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+                            @account.Fullname }
+                    </li>
+
+                    <li>@Html.ActionLink("AccountDetail", "Details", "UsersDefault", new { area = "Default" }, new { @class = "nav-link" })</li>
+
+                    <li>
+                        <a href="~/Home/Logout"> LOG OUT </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

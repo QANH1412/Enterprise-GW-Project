@@ -20,13 +20,14 @@
                     <li>@Html.ActionLink("Home", "Index", "HomeAdmin", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "HomeAdmin", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "HomeAdmin", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("CreateAccount", "Create", "Users", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Account", "Index", "Users", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Department", "Index", "Departments", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Role", "Index", "Roles", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Categories", "Index", "Categories", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Submisson", "Index", "Topics", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Staff Submisson", "Index", "StaffTopics", new { area = "Admin" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Statistics", "Index", "Statistics", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                     <li>@Html.ActionLink("Rating idea", "Index", "ListIdeas", new { area = "Admin" }, new { @class = "nav-link" })</li>
 
                     <li>
                         @{ var admin = (WebApplication2.Models.User)HttpContext.Current.Session["user"];

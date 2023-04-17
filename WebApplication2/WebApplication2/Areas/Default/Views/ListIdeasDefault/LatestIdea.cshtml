@@ -1,0 +1,70 @@
+﻿
+@model IEnumerable<WebApplication2.Models.Idea>
+@using System.Web;
+@using WebApplication2.Models;
+@using System.Linq;
+
+
+@{
+    ViewBag.Title = "LatestIdea";
+    Layout = "~/Areas/Default/Views/Shared/_LayoutDefault.cshtml";
+    IdeaManagementEntities db = new IdeaManagementEntities();
+    var latestIdea = (from Item in db.Ideas
+                      orderby Item.Datetime descending
+                      select Item).ToList();
+
+}
+<h2>LatestIdea</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Text
+        </th>
+        <th>
+            FilePath
+        </th>
+        <th>
+            Datetime
+        </th>
+        <th>
+            CategoryName
+        </th>
+        <th>
+            UserName
+        </th>
+        <th>
+            TopicName
+        </th>
+
+    </tr>
+
+    @foreach (var item in latestIdea)
+    {
+        <tr>
+            <td>
+                @item.Text
+            </td>
+            <td>
+                @item.FilePath
+            </td>
+            <td>
+                @item.Datetime
+            </td>
+            <td>
+                @item.CategoryId
+            </td>
+            <td>
+                @item.UserId
+            </td>
+            <td>
+                @item.TopicId
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+

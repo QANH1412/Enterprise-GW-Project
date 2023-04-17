@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebApplication2.Models;
@@ -34,7 +35,21 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        [HttpPost]
+        public ActionResult Contact(string AccountName, string Email, string Note)
+        {
+            string subjectTiltle = "Email Contact Notification";
+            string body = Note;
+
+            WebMail.Send(Email, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
+
+
+            return View();
+        }
+
+
+
+            public ActionResult Login()
         {
             ViewBag.Message = "Your Login page.";
 
@@ -59,9 +74,9 @@ namespace WebApplication2.Controllers
                 {
                     return RedirectToAction("Index", "HomeAdmin", new { area = "Admin" });
                 }
-                else
+                else 
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "HomeDefaults", new { area = "Default"});
 
                 }
 
@@ -93,6 +108,14 @@ namespace WebApplication2.Controllers
             FormsAuthentication.SignOut();
             return Redirect("Login");
         }
-       
+
+
+        public ActionResult MusicPlayer()
+        {
+            ViewBag.Message = "Your MusicPlayer page.";
+
+            return View();
+        }
+
     }
 }

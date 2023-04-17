@@ -1,0 +1,231 @@
+﻿@model WebApplication2.Models.Topic
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="icon"
+          href="/Content/Frontend/Images/bulding.svg"
+          type="image/svg"
+          sizes="32x32" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    @{
+        var accountRole = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+        if (accountRole.RoleId == "Coordinator")
+        {
+            <link rel="stylesheet" href="/Content/Frontend/layoutCoordinator.css" />
+        }
+        else
+        {
+            <link rel="stylesheet" href="/Content/Frontend/layoutDefault.css" />
+        }
+    }
+
+
+    <title>Homepage</title>
+</head>
+<body>
+
+    <!---- BackGround Loader ---->
+
+    <video class="loader_bg" image.png muted autoplay loop>
+        <source src="/Content/Frontend/Images/Preloading.mp4" type="video/mp4" ">
+    </video>
+
+    <!--Cursor GSAP -->
+    <div class="cursor"></div>
+
+    <!---- Header --->
+
+    @{
+        accountRole = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+        if (accountRole.RoleId == "Coordinator")
+        {
+            <header data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">
+                <div class="inner">
+                    <div class="logo cursor-scale small" data-aos="fade-in" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3800">
+                        <img src="/Content/Frontend/Images/Remove_Gif_BackGround.gif" alt="Kawaii-logo" />
+                    </div>
+                    <div class="burger"></div>
+                    <nav>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "DepartmentsDefault", new { area = "Default" })">Department</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">Staff Submission</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default"})">Music Player</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default"})">About</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "StatisticsDefault", new { area = "Default" })">Statistics</a>
+                        @*
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">StaffSubmission</a>
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default"})">Music Player</a>
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("About", "HomeDefaults", new { area = "Default"})">AboutPage</a>
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "StatisticsDefault", new { area = "Default" })">Statistics</a>
+                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "DepartmentsDefault", new { area = "Default" })"> YourDepartment</a>
+                        *@
+                    </nav>
+
+                    <div class="dropdown">
+                        <a href="#" class="user-link cursor-scale small">Coordinator</a>
+                        <div class="dropdown-content">
+                            <a class="cursor-scale small" href="#">Account profile</a>
+                            <a class="cursor-scale small" href="#">Update profile</a>
+                            <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+        }
+        else
+        {
+            <header data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">
+                <div class="inner">
+                    <div class="logo cursor-scale small" data-aos="fade-in" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3800">
+                        <img src="/Content/Frontend/Images/Remove_Gif_BackGround.gif" alt="Kawaii-logo" />
+                    </div>
+                    <div class="burger"></div>
+                    <nav>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default"})">Music Player</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">Staff Submission</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default" })">About Page</a>
+
+
+                    </nav>
+
+                    <div class="dropdown">
+                        @{ var account = (WebApplication2.Models.User)HttpContext.Current.Session["user"]; }
+                        <a href="#" class="user-link cursor-scale small">Welcome, @account.Fullname</a>
+                        <div class="dropdown-content">
+                            <a class="cursor-scale small" href="#">Account profile</a>
+                            <a class="cursor-scale small" href="#">Update profile</a>
+                            <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+        }
+
+
+    }
+
+
+
+
+
+
+
+    <!--  BODY -->
+    <main>
+        <div id="slider" data-aos="fade-up" data-aos-duration="1400" data-aos-easing="ease" data-aos-delay="3400">
+            <div class="slider-inner">
+                <div id="slider-content" data-aos-unset="opacity visibility" data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease" data-aos-delay="3800">
+                    <!-- Upper Slider Content  -->
+                    <div class="meta cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">Staffs</div>
+                    <h2>Create</h2>
+                    <header>
+                        <div class="inner">
+                            <nav>    <a class="border-underline cursor-scale small" href="/Default/TopicsDefault/Index">Back To List</a> </nav>
+                        </div>
+                    </header>
+                </div>
+                <!--Input form-->    
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div>
+
+                            
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div>
+                                <h4 class="MyH4">Name</h4>
+                                <div>
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="MyH4">ClosureDate</h4>
+                                <div>
+                                    @Html.EditorFor(model => model.ClosureDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ClosureDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="MyH4">FinalClosureDate</h4>
+                                <div>
+                                    @Html.EditorFor(model => model.FinalClosureDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FinalClosureDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div>
+                                <div>
+                                    <input type="submit" value="Create" class="btn btn-default" style="height:40px; width:70px; margin-top:10px;"  />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                
+
+
+            </div>
+        </div>
+
+
+
+    </main>
+
+
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+    <script src="/Scripts/Fronend/HomePageDefault.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-40525870-5');
+
+        AOS.init();</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

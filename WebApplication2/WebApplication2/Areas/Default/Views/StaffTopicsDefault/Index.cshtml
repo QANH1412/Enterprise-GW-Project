@@ -1,0 +1,55 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<WebApplication2.Models.Topic>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Default/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<h2>Index</h2>
+
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            ClosureDate
+        </th>
+        <th>
+            FinalClosureDate
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            var i = 1;
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.ClosureDate</td>
+                <td>@item.FinalClosureDate</td>
+                <td>
+                    @Html.ActionLink("View Idea", "Index", "IdeasDefault", new { id = item.Id, name = item.Name, closuredate = item.ClosureDate, finalclosuredate = item.FinalClosureDate }, new { @class = "nav-link" })
+                 
+                </td>
+            </tr>
+
+        }
+    }
+
+
+
+
+</table>
+
+<br />
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = 5 }))

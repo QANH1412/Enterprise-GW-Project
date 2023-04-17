@@ -1,9 +1,232 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Content/Frontend/AboutPage.css" />
+    <link rel="icon"
+          href="/Content/Frontend/Images/About.svg"
+          type="image/svg"
+          sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap"
+          rel="stylesheet" />
 
-    <p>Use this area to provide additional information.</p>
-</main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Using CSS Swiper -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+    <title>About Us</title>
+</head>
+<body>
+    <!--loader animation -->
+    <video class="loader_bg" image.png muted autoplay loop>
+        <source src="/Content/Frontend/Images/Preloading.mp4" type="video/mp4" />
+    </video>
+    <!-- Cursor GSAP -->
+    <div class="cursor"></div>
+
+    <!-- start of hero -->
+    <section class="hero-slider hero-style">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide-inner slide-bg-image"
+                         data-background="https://cdn.discordapp.com/attachments/774503944521121792/1096778577300697098/180450-transformed-transformed-transformed.jpeg">
+                        <div class="container">
+                            <div data-swiper-parallax="500" class="slide-title">
+                                <h2 data-aos="fade-down"
+                                    data-aos-duration="1200"
+                                    data-aos-easing="ease"
+                                    data-aos-delay="3000">
+                                    The Workstation Coffee
+                                </h2>
+                            </div>
+                            <div data-swiper-parallax="550" class="slide-text">
+                                <p data-aos="fade-right"
+                                   data-aos-duration="1100"
+                                   data-aos-easing="ease"
+                                   data-aos-delay="3250">
+                                    Looking for a dynamic and rewarding work environment? Look
+                                    no further than Coffee Workstation! Our department is not
+                                    only superior in providing convenience considering other
+                                    apsects but also provides one of the perfect place to work
+                                    if you're passionate about coffee, enjoy value customer
+                                    service. <br />
+                                    Working at Coffee Workstation provides a wealth of benefits,
+                                    including a flexible schedule, opportunities for growth and
+                                    advancement, and the chance to work alongside a supportive
+                                    and motivated team.
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div data-swiper-parallax="600" class="slide-btns">
+                                <!--HOMEPAGE LINK-->
+                                <a href="@Url.Action("Index", "Home")" class="theme-btn-s2 cursor-scale small">Take me there!</a>
+                                <a href="#" class="theme-btn-s3 cursor-scale small">
+                                    <i class="fas fa-chevron-circle-right"></i> GET TO KNOW MORE
+                                    INFO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end slide-inner -->
+                <div class="swiper-slide">
+                    <div class="slide-inner slide-bg-image"
+                         data-background="https://cdn.discordapp.com/attachments/774503944521121792/1096784031141593158/maxresdefault-vFTQbcAGhW-transformed.jpeg">
+                        <div class="container">
+                            <div data-swiper-parallax="500" class="slide-title">
+                                <h2>exquitise music</h2>
+                            </div>
+                            <div data-swiper-parallax="550" class="slide-text">
+                                <p>
+                                    Japan's music scene is a captivating and constantly evolving
+                                    aspect of the country's culture, blending traditional folk
+                                    music with modern J-pop and anime soundtracks. <br />
+                                    Despite language barriers, whether you're a curious traveler
+                                    or a dedicated fan, exploring the essence of japanese music
+                                    is an absolute must for anyone seeking an unforgettable
+                                    musical journey.
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div data-swiper-parallax="600" class="slide-btns">
+                                <!--MUSIC PLAYER LINK-->
+                                <a href="@Url.Action("MusicPlayer", "Home")" class="theme-btn-s2 cursor-scale small">Hear our voice!</a>
+                                <a href="https://www.uniqlo.com/jp/en/contents/feature/ut-magazine/s97/"
+                                   target="_blank"
+                                   class="theme-btn-s3 cursor-scale small">
+                                    <i class="fas fa-chevron-circle-right"></i> GET TO KNOW
+                                    MORE INFO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end slide-inner -->
+                <div class="swiper-slide">
+                    <div class="slide-inner slide-bg-image"
+                         data-background="https://cdn.discordapp.com/attachments/774503944521121792/1096564806967906384/211604_2-transformed_1.png">
+                        <div class="container">
+                            <div data-swiper-parallax="500" class="slide-title">
+                                <h2>Professional Design Website</h2>
+                            </div>
+                            <div data-swiper-parallax="550" class="slide-text">
+                                <p>
+                                    Get in touch with the latest technology. Using the latest
+                                    UI/UX trends and technologies, we aimed to provide a
+                                    seamless browsing experience for our users.
+                                    <br />The use of animations, micro-interactions, and bold
+                                    typography enhances the overall visual appeal and
+                                    interactivity of our website. Our group's dedication to
+                                    staying up-to-date with the latest design trends which has
+                                    resulted in a professional website that effectively
+                                    communicates our brand's message and achieves our project
+                                    goals.
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div data-swiper-parallax="600" class="slide-btns">
+                                <a href="#" class="theme-btn-s2 cursor-scale small">Notify me!</a>
+                                <a href="#" class="theme-btn-s3 cursor-scale small">
+                                    <i class="fas fa-chevron-circle-right"></i> GET TO KNOW
+                                    MORE INFO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-swiper-slide -->
+                <div class="swiper-slide">
+                    <div class="slide-inner slide-bg-image"
+                         data-background="https://cdn.discordapp.com/attachments/774503944521121792/1096579844806025247/345222-rTnXvqkTC-transformed.png">
+                        <div class="container">
+                            <div data-swiper-parallax="500" class="slide-title">
+                                <h2>Engaging Environment</h2>
+                            </div>
+                            <div data-swiper-parallax="550" class="slide-text">
+                                <p>
+                                    Are you tired of dull and uninspiring work environments?
+                                    Come to join our workspace resort department! Our workspace
+                                    is designed to provide a stimulating and dynamic atmosphere
+                                    that promotes creativity, productivity, and collaboration.
+                                    With ample natural light, comfortable seating, and modern
+                                    amenities.<br />
+                                    As we prioritize building a community of like-minded
+                                    professionals who are passionate about their work. Our
+                                    workspace is the perfect place to connect with others, share
+                                    ideas, and develop your skills.
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div data-swiper-parallax="600" class="slide-btns">
+                                <!--Contact Us-->
+                                <a href="@Url.Action("Contact", "Home")" class="theme-btn-s2 cursor-scale small">contact us!</a>
+                                <a href="#" class="theme-btn-s3 cursor-scale small">
+                                    <i class="fas fa-chevron-circle-right"></i> GET TO KNOW
+                                    MORE INFO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-swiper-slide -->
+                <div class="swiper-slide">
+                    <div class="slide-inner slide-bg-image"
+                         data-background="https://cdn.discordapp.com/attachments/774503944521121792/1096548965111046255/347258-transformed.jpeg">
+                        <div class="container">
+                            <div data-swiper-parallax="500" class="slide-title">
+                                <h2>Futuristic Department</h2>
+                            </div>
+                            <div data-swiper-parallax="550" class="slide-text">
+                                <p>
+                                    Looking for a fulfilling and rewarding career? Join our
+                                    dynamic department and be part of a team that's dedicated to
+                                    delivering exceptional results. Our department is committed
+                                    to creating a supportive and collaborative work environment
+                                    that fosters personal growth and professional
+                                    development.<br />
+                                    Our focus on innovation and staying up-to-date with the
+                                    latest industry trends and technologies ensures that you'll
+                                    be at the forefront of your field. You can click the link
+                                    below to learn more about us.
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div data-swiper-parallax="600" class="slide-btns">
+                                <!--SiGN IN LINK-->
+                                <a href="@Url.Action("Login", "Home")" class="theme-btn-s2 cursor-scale small">collab with us!</a>
+                                <a href="#" class="theme-btn-s3 cursor-scale small">
+                                    <i class="fas fa-chevron-circle-right"></i> GET TO KNOW
+                                    MORE INFO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end-swiper-slide -->
+            </div>
+            <!-- end swiper-wrapper -->
+            <!-- swipper controls -->
+
+            <div class="swiper-button-next cursor-scale small"></div>
+            <div class="swiper-button-prev cursor-scale small"></div>
+        </div>
+    </section>
+    <!-- end of hero slider -->
+    <!-- AOS animation library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="/Scripts/Fronend/AboutPage.js"></script>
+</body>
+</html>

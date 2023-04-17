@@ -199,6 +199,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
@@ -212,6 +213,15 @@
     <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ViewsController.cs" />
+    <Compile Include="Areas\Default\Controllers\DepartmentsDefaultController.cs" />
+    <Compile Include="Areas\Default\Controllers\HomeDefaultsController.cs" />
+    <Compile Include="Areas\Default\Controllers\IdeasDefaultController.cs" />
+    <Compile Include="Areas\Default\Controllers\ListIdeasDefaultController.cs" />
+    <Compile Include="Areas\Default\Controllers\StaffTopicsDefaultController.cs" />
+    <Compile Include="Areas\Default\Controllers\StatisticsDefaultController.cs" />
+    <Compile Include="Areas\Default\Controllers\TopicsDefaultController.cs" />
+    <Compile Include="Areas\Default\Controllers\UsersDefaultController.cs" />
+    <Compile Include="Areas\Default\DefaultAreaRegistration.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -221,6 +231,8 @@
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filter\AdminAuthorization.cs" />
+    <Compile Include="Filter\CoordinatorAuthorization.cs" />
+    <Compile Include="Filter\DefaultAuthorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,6 +301,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Frontend\AboutPage.css" />
+    <Content Include="Content\Frontend\ContactPageGuest.css" />
+    <Content Include="Content\Frontend\HomePageAdmin.css" />
+    <Content Include="Content\Frontend\HomePageCoordinator.css" />
+    <Content Include="Content\Frontend\HomePageDefault.css" />
+    <Content Include="Content\Frontend\HomePageGuest.css" />
+    <Content Include="Content\Frontend\LayoutCoordinator.css" />
+    <Content Include="Content\Frontend\LayoutDefault.css" />
+    <Content Include="Content\Frontend\Login.css" />
+    <Content Include="Content\Frontend\MusicPlayerPage.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -373,7 +395,43 @@
     <Content Include="Areas\Admin\Views\ListIdeas\ViewIdea.cshtml" />
     <Content Include="Areas\Admin\Views\ListIdeas\CommentIdea.cshtml" />
     <Content Include="Areas\Admin\Views\ListIdeas\LatestIdea.cshtml" />
+    <Content Include="Areas\Default\Views\web.config" />
+    <Content Include="Areas\Default\Views\Shared\_LayoutDefault.cshtml" />
+    <Content Include="Areas\Default\Views\HomeDefaults\Index.cshtml" />
+    <Content Include="Areas\Default\Views\HomeDefaults\About.cshtml" />
+    <Content Include="Areas\Default\Views\HomeDefaults\Contact.cshtml" />
+    <Content Include="Areas\Default\Views\UsersDefault\Details.cshtml" />
+    <Content Include="Areas\Default\Views\UsersDefault\Edit.cshtml" />
+    <Content Include="Areas\Default\Views\StaffTopicsDefault\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Default\Views\IdeasDefault\Create.cshtml" />
+    <Content Include="Areas\Default\Views\IdeasDefault\Details.cshtml" />
+    <Content Include="Areas\Default\Views\IdeasDefault\Index.cshtml" />
+    <Content Include="Areas\Default\Views\ListIdeasDefault\Index.cshtml" />
+    <Content Include="Areas\Default\Views\ListIdeasDefault\PopularIdea.cshtml" />
+    <Content Include="Areas\Default\Views\ListIdeasDefault\ViewIdea.cshtml" />
+    <Content Include="Areas\Default\Views\ListIdeasDefault\LatestIdea.cshtml" />
+    <Content Include="Areas\Default\Views\ListIdeasDefault\CommentIdea.cshtml" />
+    <Content Include="Areas\Default\Views\TopicsDefault\Create.cshtml" />
+    <Content Include="Areas\Default\Views\TopicsDefault\Delete.cshtml" />
+    <Content Include="Areas\Default\Views\TopicsDefault\Details.cshtml" />
+    <Content Include="Areas\Default\Views\TopicsDefault\Edit.cshtml" />
+    <Content Include="Areas\Default\Views\TopicsDefault\Index.cshtml" />
+    <Content Include="Areas\Default\Views\StatisticsDefault\Index.cshtml" />
+    <Content Include="Areas\Default\Views\DepartmentsDefault\Index.cshtml" />
+    <Content Include="Areas\Default\Views\HomeDefaults\MusicPlayer.cshtml" />
+    <Content Include="Areas\Default\Views\Shared\_LayoutDefaultTest.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Fronend\AboutPage.js" />
+    <Content Include="Scripts\Fronend\ContactPageGuest.js" />
+    <Content Include="Scripts\Fronend\HomePageAdmin.js" />
+    <Content Include="Scripts\Fronend\HomePageCoordinator.js" />
+    <Content Include="Scripts\Fronend\HomePageDefault.js" />
+    <Content Include="Scripts\Fronend\HomePageGuest.js" />
+    <Content Include="Scripts\Fronend\Login.js" />
+    <Content Include="Scripts\Fronend\MusicPlayerPage.js" />
+    <Content Include="Scripts\Fronend\vanilla-tilt.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -428,11 +486,15 @@
     <Content Include="Views\Ideas\Create.cshtml" />
     <Content Include="Views\Ideas\Details.cshtml" />
     <Content Include="Views\Ideas\Index.cshtml" />
+    <Content Include="Views\Home\MusicPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\UploadFile1\" />
+    <Folder Include="Areas\Default\Data\" />
+    <Folder Include="Content\Frontend\Images\" />
+    <Folder Include="Content\Frontend\MP3\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>

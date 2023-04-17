@@ -190,7 +190,6 @@ namespace WebApplication2.Areas.Admin.Controllers
                 foreach (var EmailList in emailList)
                 {
                     WebMail.Send(EmailList, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
-
                 }
 
             }
@@ -354,17 +353,20 @@ namespace WebApplication2.Areas.Admin.Controllers
                 db.SaveChanges();
 
                 // send email notification
-                var emailList = (from item in db.Users
-                                 where item.RoleId == "Coordinator"
-                                 select item.Email).ToList();
+                // find in db where idea.userid == user id, pick the departmentID
+                var UserOfDepartment = (from item in db.Users
+                                        where item.Id == idea.UserId
+                                        select item.DepartmentId).FirstOrDefault();
+                // find in db where a coordinator have that ID department == userDepartment, sent the email notification to the coordinator
+                var CoordinatorOfDepartment = (from item in db.Users
+                                               where item.DepartmentId == UserOfDepartment
+                                               select item.Email).ToString();
                 string subjectTiltle = "Email notification";
-                string body = "One Idea has been add to database";
+                string body = "One Idea has been sent";
 
-                foreach(var EmailList in emailList)
-                {
-                    WebMail.Send(EmailList, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
 
-                }
+                WebMail.Send(CoordinatorOfDepartment, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
+
                 return RedirectToRoute(new { controller = "Ideas", action = "Index", id = Id, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });
             }
 

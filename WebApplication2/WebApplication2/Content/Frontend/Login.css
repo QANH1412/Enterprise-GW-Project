@@ -1,0 +1,975 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+  font-size: 52.5%;
+}
+
+:root {
+  --ancient-white: rgb(248, 248, 248);
+  --ancient-grey-black-form: rgb(39, 39, 39);
+  --ancient-background-color: rgba(0, 0, 0, 0.877);
+  --ancient-input-inquiry: rgba(35, 36, 42, 1);
+  --ancient-span-inquiry: rgba(143, 143, 143, 1);
+  --ancient-login-color: rgba(52, 151, 238, 1);
+}
+
+body {
+  display: flex;
+  background-color: var(--ancient-background-color);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.back-video {
+  position: fixed;
+  z-index: -2;
+  opacity: 1;
+  min-width: 1920px;
+  height: 1080px;
+}
+
+.detail_layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+  z-index: 1;
+  display: flex;
+}
+
+.box {
+  position: absolute;
+  width: 380px;
+  height: 420px;
+  background: #1c1c1c;
+  border-radius: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  overflow: hidden;
+  transition: all 500ms cubic-bezier(0.15, 0.15, 0.81, 0.81);
+  filter: drop-shadow(2px 2px 42px rgba(35, 204, 255, 0.397));
+}
+
+.box:hover {
+  transition: all 500ms cubic-bezier(0.15, 0.15, 0.81, 0.81);
+}
+
+.box form {
+  position: absolute;
+  inset: 4px;
+  background-color: var(--ancient-grey-black-form);
+  padding: 40px 40px;
+  border-radius: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  filter: blur(1.5px);
+  transition: all 500ms cubic-bezier(0.15, 0.15, 0.81, 0.81);
+}
+
+.box form:hover {
+  filter: blur(0px) contrast(115%) brightness(120%) saturate(150%);
+  transition: all 500ms cubic-bezier(0.15, 0.15, 0.81, 0.81);
+}
+
+.box form h2 {
+  color: var(--ancient-white);
+  position: relative;
+  width: 40%;
+  top: 5px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 30px;
+  position: relative;
+  text-shadow: 2px 1px 10px rgba(218, 213, 213, 0.884);
+  filter: contrast(150%);
+}
+
+.box form .inputBox {
+  position: relative;
+  width: 300px;
+  margin-top: 35px;
+}
+
+.box form .inputBox input {
+  position: relative;
+  width: 100%;
+  padding: 20px 10px 10px;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  color: var(--ancient-input-inquiry);
+  font-size: 15px;
+  background: transparent;
+  transition: 500ms ease-in-out;
+  z-index: 10;
+  cursor: none;
+}
+
+.box form .inputBox label {
+  position: absolute;
+  left: 0%;
+  padding: 20px 10px 10px;
+  pointer-events: none;
+  color: var(--ancient-span-inquiry);
+  font-size: 18px;
+  transform: translateX(0%) translateY(0%) scale(1.05);
+  letter-spacing: 0.05em;
+  transition: all 600ms cubic-bezier(0.445, 0.05, 0.35, 0.95);
+  z-index: 8;
+}
+
+.box form .inputBox input:valid ~ label,
+.box form .inputBox input:focus ~ label {
+  color: var(--ancient-white);
+  transform: translateX(-5px) translateY(-36px) scale(0.95);
+  text-shadow: 2px 1px 10px rgba(218, 213, 213, 0.884);
+  z-index: 8;
+  filter: contrast(150%);
+  transition: all 600ms cubic-bezier(0.445, 0.05, 0.25, 0.95);
+}
+
+.box form .inputBox i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  height: 1px;
+  background-color: var(--ancient-white);
+  pointer-events: none;
+  transition: all 600ms cubic-bezier(0.445, 0.05, 0.25, 0.95);
+}
+
+.box form .inputBox input:valid ~ i,
+.box form .inputBox input:focus ~ i {
+  color: var(--ancient-white);
+  height: 42px;
+}
+.box .links a {
+  position: relative;
+  float: right;
+  top: 280px;
+  right: 40px;
+  font-size: 15px;
+  color: var(--ancient-span-inquiry);
+  text-decoration: none;
+  cursor: none;
+  transform: scale(100%);
+  filter: blur(1px);
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.25, 0.95);
+  z-index: 2;
+}
+
+.box .links a::before,
+.box .links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.25, 0.95);
+}
+
+.box .links a::before {
+  left: 0;
+  background-color: var(--ancient-span-inquiry);
+}
+
+.box .links a::after {
+  right: 0;
+  background-color: var(--ancient-span-inquiry);
+}
+
+.box .links a:hover::before,
+.box .links a:hover::after {
+  width: 50%;
+}
+
+.box .links a:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.box .links a:hover::after {
+  transform-origin: right;
+  transform: scaleX(1);
+}
+
+.box .links a:hover {
+  color: var(--ancient-white);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  transition: all 500ms cubic-bezier(0.445, 0.05, 0.25, 0.95);
+  filter: drop-shadow(1px 1px 22px rgba(245, 247, 248, 0.932));
+  transform: scale(105%);
+}
+
+/*========== Checked SignUp page ==========*/
+#check1 {
+  display: none;
+}
+
+.sidebar_menu1 .close-button i {
+  font-size: 20px;
+  line-height: 60px;
+  position: absolute;
+  left: 90%;
+  top: 9px;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(1) translateY(80px);
+  transition: all 1200ms ease;
+  cursor: none;
+}
+
+.sidebar_menu1 {
+  position: fixed;
+  height: 100%;
+  display: block;
+  z-index: -1;
+  width: 100%;
+  bottom: 0px;
+  top: 0;
+  left: 0;
+  background: rgb(255, 255, 255);
+  box-shadow: 0px 0px 6px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(520px);
+  transition: all;
+  transition-duration: 1900ms;
+  transition-timing-function: ease;
+}
+
+#check1:checked ~ .sidebar_menu1 {
+  display: block;
+  border-radius: 12px;
+  position: fixed;
+  transform: translateY(0px);
+  transition: all 0.8s;
+  transition-property: all;
+  transition-duration: 1900ms;
+  transition-timing-function: ease;
+  transition-delay: 0ms;
+  opacity: 1;
+  border: none;
+  background: rgb(248, 248, 248);
+  position: fixed;
+  z-index: 10;
+  overflow: hidden;
+}
+
+#check1:checked ~ .sidebar_menu1 .close-button i {
+  transition-property: opacity, transform;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 1950ms;
+  opacity: 1;
+  transform: translateY(0px);
+  color: var(--ancient-background-color);
+  z-index: 6;
+  font-size: 25px;
+  cursor: none;
+}
+
+/*========= Input SignUp
+.sidebar_menu1 form.signup {
+  position: absolute;
+  inset: 4px;
+  background-color: #f7f7f700;
+  padding: 0px 0px;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  filter: blur(0px);
+  opacity: 0;
+  transform: translateY(520px);
+  transition: all 1900ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 form.signup {
+  opacity: 1;
+  z-index: 2;
+  background-color: var(--ancient-white);
+  transform: translateY(0px);
+  transition: all 1900ms ease;
+}
+
+.sidebar_menu1 h3 {
+  color: rgb(39, 39, 39);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 70%;
+  left: 50%;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 30px;
+  position: relative;
+  text-shadow: 2px 1px 10px rgb(255, 255, 255);
+  filter: contrast(150%);
+  z-index: -1;
+  opacity: 0;
+  transition: all;
+  transform: translateY(100px) translateX(-50%);
+  transition-duration: 1900ms;
+  transition-timing-function: ease;
+}
+
+#check1:checked ~ .sidebar_menu1 h3 {
+  transition-property: opacity, transform;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 400ms;
+  opacity: 1;
+  transform: translateY(0px) translateX(-50%);
+  color: var(--ancient-background-color);
+  z-index: 6;
+  cursor: none;
+}
+
+.sidebar_menu1 .input-box {
+  position: relative;
+  width: 300px;
+  margin: 9px 35px;
+  z-index: -1;
+  opacity: 0;
+  transition: all;
+  transform: translateY(100px);
+  transition-duration: 1900ms;
+  transition-timing-function: ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box:nth-child(2) {
+  transition-property: all;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 650ms;
+  opacity: 1;
+  transform: translateY(0px);
+  z-index: 6;
+}
+#check1:checked ~ .sidebar_menu1 .input-box:nth-child(3) {
+  transition-property: all;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 800ms;
+  opacity: 1;
+  transform: translateY(0px);
+  z-index: 6;
+}
+#check1:checked ~ .sidebar_menu1 .input-box:nth-child(4) {
+  transition-property: all;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 1050ms;
+  opacity: 1;
+  transform: translateY(0px);
+  z-index: 6;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box:nth-child(5) {
+  transition-property: all;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 1300ms;
+  opacity: 1;
+  transform: translateY(0px);
+  z-index: 6;
+}
+
+.sidebar_menu1 .input-box input {
+  position: relative;
+  width: 100%;
+  outline: none;
+  margin: auto;
+  border: 2px solid rgb(167, 173, 175);
+  border-radius: 6px;
+  padding: 8px;
+  transform: translateY(100px);
+  cursor: none;
+  z-index: -1;
+  font-size: 15px;
+  opacity: 0;
+  transition: all 1900ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box input {
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-delay: 250ms;
+  opacity: 1;
+  transform: translateY(0px);
+  z-index: 6;
+}
+
+.sidebar_menu1 .input-box input:is(:focus, :valid) {
+  border-color: #000000;
+  z-index: -1;
+  transition-property: all;
+  transition-duration: 1900ms;
+  transition-timing-function: ease;
+  transition-delay: 400ms;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box input:is(:focus, :valid) {
+  border-color: #000000;
+  transition-property: all;
+  transition-duration: 1200ms;
+  transition-timing-function: ease;
+  transition-delay: 400ms;
+  opacity: 1;
+  z-index: 6;
+  transform: translateY(0px);
+}
+
+.sidebar_menu1 .input-box :is(label, i) {
+  position: absolute;
+  color: #999;
+  transition: all 1900ms ease;
+  z-index: -1;
+  top: 30%;
+  transform: translateY(-30%);
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box :is(label, i) {
+  z-index: 6;
+}
+
+.sidebar_menu1 .input-box label {
+  left: 15px;
+  pointer-events: none;
+  font-size: 16px;
+  font-weight: 400;
+  z-index: -1;
+  opacity: 0;
+  transition: transform 1900ms ease 400ms, opacity 1900ms ease 400ms;
+  transform: translateY(100px);
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box label:nth-child(1) {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: transform 1200ms ease 400ms, opacity 1200ms ease 400ms;
+  z-index: 6;
+  transition: 400ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box label:nth-child(2) {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: transform 1200ms ease 700ms, opacity 1200ms ease 700ms;
+  z-index: 6;
+  transition: 400ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box label:nth-child(3) {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: transform 1200ms ease 1000ms, opacity 1200ms ease 1000ms;
+  z-index: 6;
+  transition: 400ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box label:nth-child(4) {
+  transform: translateY(0px);
+  opacity: 1;
+  transition: transform 1200ms ease 1300ms, opacity 1200ms ease 1300ms;
+  z-index: 6;
+  transition: 400ms ease;
+}
+
+.sidebar_menu1 .input-box input:is(:focus, :valid) ~ label {
+  color: #000000;
+  top: -20%;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #fff;
+  z-index: -1;
+  transition: all 600ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box input:is(:focus, :valid) ~ label {
+  z-index: 6;
+  transition: all 600ms ease;
+}
+
+.sidebar_menu1 .input-box input:is(:focus, :valid) {
+  color: #000000;
+  z-index: -1;
+  transition: all 600ms ease;
+}
+
+#check1:checked ~ .sidebar_menu1 .input-box input:is(:focus, :valid) {
+  z-index: 6;
+  transition: all 600ms ease;
+}
+
+/*========== Button 
+
+.sidebar_menu1 form.signup button.selectnone {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sidebar_menu1 form.signup button {
+  width: 300px;
+  left: 38px;
+  position: relative;
+  margin-top: 20px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #000000;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 600ms ease;
+  cursor: none;
+}
+
+.sidebar_menu1 form.signup span,
+.sidebar_menu1 form.signup svg {
+  position: absolute;
+  color: #000000;
+  fill: transparent;
+  transition: 600ms;
+  font-size: 16px;
+}
+
+.sidebar_menu1 form.signup span,
+.sidebar_menu1 form.signup svg.animate {
+  color: #000000;
+  fill: transparent;
+  transition: 400ms;
+}
+
+.sidebar_menu1 form.signup button span {
+  transition: all 400ms ease;
+  font-size: 16px;
+}
+
+.sidebar_menu1 form.signup button:hover span {
+  transition: all 400ms ease;
+  font-size: 18px;
+}
+
+.sidebar_menu1 form.signup button.animate:focus {
+  animation: spin 2400ms 500ms forwards;
+  outline: none;
+  box-shadow: none;
+  border: 2px solid transparent;
+  width: 50px;
+  left: 160px;
+  border-left: 2px solid #31d4fd;
+  border-bottom: 2px solid #31d4fd;
+}
+
+.sidebar_menu1 form.signup button.animate:focus span {
+  color: transparent;
+}
+
+.sidebar_menu1 form.signup button.animate:focus svg {
+  animation: check 500ms 2300ms forwards;
+}
+
+@keyframes spin {
+  0% {
+    border: 2px solid transparent;
+    border-left: 2px solid #31d4fd;
+  }
+  100% {
+    transform: rotate(2160deg);
+    border: 2px solid #31d4fd;
+  }
+}
+
+@keyframes check {
+  to {
+    fill: #31d4fd;
+  }
+}
+
+/*========= Create border background animation =========*/
+.box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 380px;
+  height: 420px;
+  background: linear-gradient(
+    45deg,
+    #d705ee71 0%,
+    #8c05e6 30%,
+    #245eff 60%,
+    #04eeff 90%
+  );
+  z-index: 1;
+  filter: blur(7px) contrast(150%) brightness(120%) saturate(105%);
+  transform-origin: bottom right;
+  animation: looping-animation 4500ms cubic-bezier(0.15, 0.15, 0.81, 0.81)
+    infinite;
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 380px;
+  height: 420px;
+  background: linear-gradient(
+    45deg,
+    #d705ee71 0%,
+    #8c05e6 30%,
+    #245eff 60%,
+    #04eeff 90%
+  );
+  filter: blur(7px) contrast(150%) brightness(120%) saturate(105%);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: looping-animation 4500ms cubic-bezier(0.15, 0.29, 0.81, 0.72)
+    infinite -2250ms;
+}
+
+@keyframes looping-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.box-login {
+  position: relative;
+  margin-top: 56px;
+  width: 308px;
+  height: 54px;
+  overflow: hidden;
+  border: 0px solid transparent;
+  border-radius: 12px;
+  background-color: var(--ancient-white);
+  z-index: 2;
+}
+
+.box form .box-login::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  width: 310px;
+  height: 50px;
+  background: linear-gradient(5deg, #d705ee71 0%, #5a5aff 45%, #4bf3ff 60%);
+  z-index: 1;
+  filter: blur(8px) contrast(150%) brightness(120%) saturate(105%);
+  transform-origin: top;
+  animation: looping-animation 4500ms cubic-bezier(0.15, 0.15, 0.81, 0.81)
+    infinite;
+}
+
+.box-login input[type="submit"] {
+  padding-bottom: 2px;
+  cursor: none;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 0px solid transparent;
+  width: 300px;
+  height: 47px;
+  margin: 3px 1px 2px 4px;
+  letter-spacing: 3px;
+  position: absolute;
+  z-index: 2;
+  transition: all 550ms cubic-bezier(0.42, 0, 0.58, 1) 200ms;
+}
+
+/*======== Modify Login skewX animation Hover  ========*/
+.box-login span.background-login {
+  z-index: 3;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  transform: skewX(-45deg);
+  border-radius: 12px;
+  left: -50%;
+  transition: all 550ms cubic-bezier(0.42, 0, 0.58, 1) 200ms;
+}
+
+/*======== Animation Hover Login ========*/
+
+.box-login:hover span.background-login {
+  width: 200%;
+  background: rgba(52, 151, 238, 1);
+  z-index: 3;
+  border-radius: 12px;
+  transition: all 500ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.box-login:hover input[type="submit"] {
+  color: rgb(255, 255, 255);
+  transform: scale(1.05);
+  text-shadow: 2px 1px 10px rgba(218, 213, 213, 0.884);
+  display: inline-block;
+  position: relative;
+  border-radius: none;
+  border: none;
+  z-index: 3;
+  background: rgba(52, 151, 238, 1);
+  transition: all 650ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/*======== Modify cursor animation zoom  ========*/
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--ancient-white);
+  transition: transform 300ms linear;
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 1000;
+  transition: 120ms linear;
+}
+
+.grow,
+.grow-small {
+  transform: scale(1.2);
+  background: var(--ancient-white);
+  mix-blend-mode: difference;
+  border: none;
+  filter: blur(0px);
+  opacity: 0.9;
+}
+
+.grow-small {
+  transform: scale(3.5);
+  mix-blend-mode: difference;
+  background: var(--ancient-white);
+  filter: blur(0px);
+  opacity: 1;
+}
+
+/*======== Rounded Navbar ========*/
+.container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+nav {
+  position: absolute;
+  bottom: 420px;
+  right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-wrapper {
+  cursor: none;
+  display: flex;
+  transform: rotate(-45deg);
+}
+
+.nav-wrapper .toggle-btn,
+.nav-wrapper span a {
+  height: 6rem;
+  width: 6rem;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  cursor: none;
+}
+
+.toggle-btn {
+  font-size: 38px;
+  color: rgba(0, 0, 0, 0.877);
+  z-index: 3;
+  transform: rotate(-225deg);
+  transition: all 600ms ease;
+}
+
+.open .toggle-btn {
+  transform: rotate(0deg);
+  color: rgb(248, 248, 248);
+  font-size: 38px;
+  background-color: rgb(10, 150, 175);
+  opacity: 1.2;
+  filter: drop-shadow(2px 2px 42px rgba(245, 247, 248, 0.932)) brightness(120%)
+    contrast(120%);
+  animation: all 600ms ease;
+}
+
+.nav-wrapper span a {
+  text-decoration: none;
+  transform: rotate(45deg);
+  /* transform: rotate(calc(var(--i) * (360deg/5))); */
+}
+
+.nav-wrapper span {
+  position: absolute;
+  opacity: 0;
+  transition: all 800ms cubic-bezier(0.26, 0.79, 0.95, 0.86);
+  transition-delay: calc(var(--i) * 100ms);
+  filter: drop-shadow(0px 0px 0px rgba(248, 245, 246, 0.651)) contrast(100%)
+    brightness(100%) blur(1px);
+}
+
+.open .nav-wrapper span:nth-child(5) {
+  filter: brightness(150%) drop-shadow(2px 2px 42px rgba(248, 245, 246, 0.651))
+    contrast(120%);
+  color: rgb(33, 222, 255);
+  opacity: 1;
+  transition: all 800ms ease;
+}
+
+.open .nav-wrapper span:nth-child(5) > a > i {
+  color: rgb(0, 174, 255);
+  font-weight: 900;
+}
+
+.nav-wrapper span:nth-child(5) {
+  opacity: 0;
+}
+
+.open .nav-wrapper span {
+  transform: rotate(calc(var(--i) * (360deg / 8))) translateY(112px);
+  transition-delay: calc(var(--i) * 200ms);
+  opacity: 0.8;
+  transition: all 800ms ease;
+}
+.nav-wrapper span a i {
+  font-size: 34px;
+  color: #000000;
+  transform: rotate(calc(var(--i) * (360deg / -8)));
+  opacity: 0.8;
+  transition: all 800ms ease;
+}
+
+.nav-wrapper span:hover {
+  filter: drop-shadow(2px 2px 42px rgba(248, 245, 246, 0.651)) contrast(120%)
+    brightness(120%) blur(0px);
+  opacity: 1;
+  transition: all 800ms ease;
+}
+
+.nav-wrapper span a:hover > i {
+  opacity: 1;
+  transform: rotate(calc(var(--i) * (360deg / -8))) scale(1.2);
+  color: rgb(248, 248, 248, 0.9);
+  transition: all 600ms ease;
+}
+
+.nav-wrapper span a:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: all 600ms ease;
+}
+
+/*======== Loading Page animation ========*/
+
+.loader_bg {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 1920px;
+  height: 1080px;
+  opacity: 1;
+  transition: 400ms ease 3000ms;
+}
+
+.loader_bg-finish {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---> [Parameters for transition-timing-duration website: https://cubic-bezier.com/] <--- */
+
+/*============ AoS Library Customization  ============*/
+
+body[data-aos-delay="4200"] [data-aos],
+[data-aos="fade"][data-aos][data-aos-delay="4200"] {
+  transition-delay: 4200ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="4500"] [data-aos],
+[data-aos="zoom-in"][data-aos][data-aos-delay="4500"] {
+  transition-delay: 4500ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="5300"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="5300"] {
+  transition-delay: 5300ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="5600"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="5600"] {
+  transition-delay: 5600ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="5900"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="5900"] {
+  transition-delay: 5900ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="6200"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="6200"] {
+  transition-delay: 6200ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="6500"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="6500"] {
+  transition-delay: 6500ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+body[data-aos-delay="6600"] [data-aos],
+[data-aos="fade-down"][data-aos][data-aos-delay="6600"] {
+  transition-delay: 6600ms;
+  transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+/*======== Everything in css has been optimnized, please don't touch it!
+ If any desired modification occurs, please contact TerraKahn for more information ========*/
+
+/*========  Working hours: +42 ========*/

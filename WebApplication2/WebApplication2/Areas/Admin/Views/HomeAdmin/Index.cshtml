@@ -1,40 +1,201 @@
 ﻿
 @{
     ViewBag.Title = "Home";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    /*Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";*/
+    Layout = null;
 }
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="icon"
+          href="/Content/Frontend/Images/bulding.svg"
+          type="image/svg"
+          sizes="32x32" />
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    <link rel="stylesheet" href="/Content/Frontend/HomePageAdmin.css" />
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    <title>Homepage</title>
+</head>
+<body>
+
+    <!---- BackGround Loader ---->
+
+    <video class="loader_bg" image.png muted autoplay loop>
+        <source src="/Content/Frontend/Images/Preloading.mp4" type="video/mp4" ">
+    </video>
+
+    <!--Cursor GSAP -->
+    <div class="cursor"></div>
+
+    <!---- Header --->
+    <header data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">
+        <div class="inner">
+            <div class="logo cursor-scale small" data-aos="fade-in" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="4700">
+                <img src="/Content/Frontend/Images/Remove_Gif_BackGround.gif" alt="Kawaii-logo" />
+            </div>
+            <div class="burger"></div>
+            <nav>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="4100" href="@Url.Action("Index", "HomeAdmin", new { area = "Admin" })">Homepage</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="3800" href="@Url.Action("Index", "StaffTopics", new { area = "Admin" })">Staff Submission</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("MusicPlayer", "Home", new { area = "" })">Music Player</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "ListIdeas", new { area = "Admin" })">Rating idea</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "Statistics", new { area = "Admin" })">Statistics</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("Index", "Roles", new { area = "Admin" })">Role</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "Categories", new { area = "Admin" })">Catergories</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Contact", "Home", new { area = "" })">Contact </a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "Account", new { area = "Admin" })">Account</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="3800" href="@Url.Action("Index", "Departments", new { area = "Admin" })">Department</a>
+                <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease" data-aos-delay="4100" href="@Url.Action("Index", "Topics", new { area = "Admin" })">Submission</a>
+            </nav>
+
+            <div class="dropdown">
+                <a href="#" class="user-link cursor-scale small">Welcome, Admin</a>
+                <div class="dropdown-content">
+                    <a class="cursor-scale small" href="#">Account profile</a>
+                    <a class="cursor-scale small" href="#">Update profile</a>
+                    <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!---- Slide Feature Canvas ---->
+    <main>
+        <div id="slider" data-aos="fade-up" data-aos-duration="1400" data-aos-easing="ease" data-aos-delay="4300">
+            <div class="slider-inner">
+                <div id="slider-content" data-aos-unset="opacity visibility" data-aos="fade-right" data-aos-duration="1050" data-aos-easing="ease" data-aos-delay="4700">
+                    <!-- Upper Slider Content  -->
+                    <div class="meta cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="5200">Staffs</div>
+
+                    <h2 id="slide-title">キミサツキ<br />Kimisatsuki</h2>
+                    <span data-slide-title="0">キミサツキ<br />Kimisatsuki</span>
+                    <span data-slide-title="1">キミサツキ<br />Kimisatsuki</span>
+                    <span data-slide-title="2">貴大郎<br />Takahiro</span>
+                    <span data-slide-title="3">キミサツキ<br />Kimisatsuki</span>
+
+                    <div class="meta cursor-scale small" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease" data-aos-delay="5500">features</div>
+
+                    <!-- Below Slider Content -->
+                    <div id="slide-status">
+                        <h5 data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="5700">Design & Content</h5>
+                        <h4 data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="6000">
+                            Meet Kimisatsuki, a talented UI/UX designer with a passion for
+                            <br>
+                            visually appealing and user-friendly digital products. With a
+                            year <br>of experience in working with HTML and CSS,
+                            Kimisatsuki is <br>dedicated to her work and constantly
+                            researching new techniques and<br>
+                            trends in UI/UX design to deliver custom solutions that align
+                            with her clients' needs.<br>
+                            Her collaborative approach ensures that he understands his
+                            clients' business<br>
+                            objectives and target audience to create designs that enhance
+                            the overall user <br>experience.
+                        </h4>
+                    </div>
+                    <span data-slide-status="0">
+                        <h5>Design & Content</h5>
+                        <h4>
+                            Meet Kimisatsuki, a talented UI/UX designer with a passion for
+                            <br />
+                            visually appealing and user-friendly digital products. With a
+                            year <br />of experience in working with HTML and CSS,
+                            Kimisatsuki is <br />dedicated to her work and constantly
+                            researching new techniques and<br />
+                            trends in UI/UX design to deliver custom solutions that align
+                            with her clients' needs.<br />
+                            Her collaborative approach ensures that he understands his
+                            clients' business<br />
+                            objectives and target audience to create designs that enhance
+                            the overall user <br />experience.
+                        </h4>
+                    </span>
+                    <span data-slide-status="1">
+                        <h5>Digital & Concept Art</h5>
+                        <h4>
+                            Kimisatsuki, a person who is responsible for Digital & Concept Art </br> a skilled and versatile individual who
+                            has expertise in multiple</br> areas of creative design and
+                            development. With a strong </br> proficiency in Photoshop, Unreal
+                            Engine, and Cinematic 3D MAX, I have </br> successfully
+                            implemented these tools in various projects, delivering
+                            impressive results.</br> Additionally, I am also highly
+                            skilled  in StoryBoarding and has a</br> wide-ranging knowledge in
+                            concept art.
+                        </h4>
+                    </span>
+                    <span data-slide-status="2">
+                        <h5>System & Security</h5>
+                        <h4>
+                            In our group project, it is understandable how critical importance of system </br>
+                            and security aspects are when it comes to digital products. Our team of experts is</br>
+                            well-versed in designing and developing secure and reliable systems that ensure the protection</br>
+                            and integrity of your data. We use the latest technologies and industry best practices</br>
+                            to implement robust security measures, including access control, data encryption, and threat detection,</br>
+                            to safeguard your digital assets from potential threats. With our focus on system </br>
+                            and security aspects, you can trust us to deliver solutions that are not only </br>
+                            user-friendly but also meet the highest standards of security and reliability.</br>
+                            Contact us today to learn more about how we can help you secure your digital products and systems.
+                        </h4>
+                    </span>
+                    <span data-slide-status="3">
+                        <h5>Trendy Music</h5>
+                        <h4>
+                            Get ready to immerse yourself in the vibrant and captivating world </br>
+                            of Japanese music! From the traditional melodies of the shamisen and</br>
+                            taiko drums to the modern sounds of J-Pop and anime music, Japanese music is </br>
+                            a rich and diverse cultural experience that is sure to captivate your senses. </br>
+                            The rhythm and beats of the music will have you tapping your feet, while the emotive </br>
+                            vocals and intricate instrumentation will transport you to another world.</br>
+                            Whether you're a fan of the high-energy J-Rock scene, the soulful ballads of J-Pop,</br>
+                            or the powerful themes of anime soundtracks, Japanese music has something for everyone.
+                        </h4>
+                    </span>
+
+                </div>
+            </div>
+
+            <img src="/Content/Frontend/Images/Background_remove_1.jpg" />
+            <img src="/Content/Frontend/Images/A-1.png" />
+            <img src="/Content/Frontend/Images/A-2.jpg" />
+            <img src="/Content/Frontend/Images/A-3.jpg" />
 
 
+            <div class="cursor-scale small" data-aos="fade-in" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="5900" id="pagination">
+                <button class="active" data-slide="0"></button>
+                <button data-slide="1"></button>
+                <button data-slide="2"></button>
+                <button data-slide="3"></button>
+
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+    <script src="/Scripts/Fronend/HomePageAdmin.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-40525870-5');
+
+  AOS.init();</script>
+
+</body>
+</html>

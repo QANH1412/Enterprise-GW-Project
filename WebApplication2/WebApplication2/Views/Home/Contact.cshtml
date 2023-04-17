@@ -1,19 +1,219 @@
 ﻿@{
     ViewBag.Title = "Contact";
+    Layout = "";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="/Content/Frontend/ContactPageGuest.css" />
+    <link rel="icon"
+          href="/Content/Frontend/Images/contact-book.svg"
+          type="image/svg"
+          sizes="32x32" />
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
-</main>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    <!--loader animation -->
+    <video class="loader_bg" image.png muted autoplay loop>
+        <source src="/Content/Frontend/Images/Preloading.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Cursor GSAP -->
+    <div class="cursor"></div>
+
+    <div class="container cursor-scale">
+        <div class="content">
+            <div class="left-side"
+                 data-tilt
+                 data-tilt-max="10"
+                 data-tilt-reverse="true"
+                 data-tilt-glare="true"
+                 data-tilt-reset="true"
+                 data-tilt-speed="1200"
+                 data-tilt-max-glare="0.5"
+                 data-tilt-scale="1.05"
+                 data-tilt-transition="true"
+                 data-tilt-perspective="1900"
+                 data-tilt-easeing="cubic-bezier(.24,-0.05,.47,.97)">
+                <div data-tilt
+                     data-tilt-max="15"
+                     data-tilt-reverse="true"
+                     data-tilt-glare="false"
+                     data-tilt-transition="true"
+                     data-tilt-speed="1200"
+                     data-tilt-reset="true"
+                     data-tilt-max-glare="0.3"
+                     data-tilt-scale="1.05"
+                     data-tilt-perspective="1900"
+                     data-tilt-easeing="cubic-bezier(.24,-0.05,.47,.97)"
+                     class="address details">
+                    <i class="fas fa-map-marker-alt cursor-scale small"></i>
+                    <div class="topic cursor-scale small">Address</div>
+                    <div class="text-one">Tan Binh District, Ward 12</div>
+                    <div class="text-two">Ho Chi Minh city, Viet Nam</div>
+                </div>
+
+                <div data-tilt
+                     data-tilt-max="15"
+                     data-tilt-reverse="true"
+                     data-tilt-glare="false"
+                     data-tilt-speed="1200"
+                     data-tilt-transition="true"
+                     data-tilt-reset="true"
+                     data-tilt-max-glare="0.3"
+                     data-tilt-scale="1.05"
+                     data-tilt-perspective="1900"
+                     data-tilt-easeing="cubic-bezier(.24,-0.05,.47,.97)"
+                     class="phone details">
+                    <i class="fas fa-phone-alt cursor-scale small"></i>
+                    <div class="topic cursor-scale small">Phone.No</div>
+                    <div class="text-one">+84 0919 620 485</div>
+                    <div class="text-two">+84 0182 378 782</div>
+                </div>
+                <div data-tilt
+                     data-tilt-max="15"
+                     data-tilt-reverse="true"
+                     data-tilt-transition="true"
+                     data-tilt-reset="true"
+                     data-tilt-glare="false"
+                     data-tilt-speed="1200"
+                     data-tilt-max-glare="0.3"
+                     data-tilt-scale="1.05"
+                     data-tilt-perspective="1900"
+                     data-tilt-easeing="cubic-bezier(.24,-0.05,.47,.97)"
+                     class="email details">
+                    <i class="fas fa-envelope cursor-scale small"></i>
+                    <div class="topic cursor-scale small">Email Contact</div>
+                    <div class="text-one">forbiddenangel@gmail.com</div>
+                    <div class="text-two">terrakahn@gmail.com</div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div data-aos="fade-up"
+                     data-aos-duration="1200"
+                     data-aos-easing="ease"
+                     data-aos-delay="3900"
+                     class="topic-text cursor-scale small">
+                    Security Center & Your Inquiries
+                </div>
+                <p data-aos="fade-up"
+                   data-aos-duration="1200"
+                   data-aos-easing="ease"
+                   data-aos-delay="4150">
+                    If you ever have any questions or need further information, please
+                    don't hesitate to get in touch with us. We're here to help and we
+                    always welcome the opportunity to assist you with your inquiries.
+                </p>
+                @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                   
+                        <div data-aos="fade-up"
+                             data-aos-duration="1200"
+                             data-aos-easing="ease"
+                             data-aos-delay="4400"
+                             class="input-box cursor-scale small">
+                            <input id="accountName" name="accountName" type="text" value=""  required="required">
+
+                            <label>[ID Account]</label>
+                        </div>
+                        <div data-aos="fade-up"
+                             data-aos-duration="1200"
+                             data-aos-easing="ease"
+                             data-aos-delay="4650"
+                             class="input-box cursor-scale small">
+                            <input id="Email" name="Email" type="text" value=""  required="required">
+                            <label>[Email]</label>
+                        </div>
+                        <div data-aos="fade-up"
+                             data-aos-duration="1200"
+                             data-aos-easing="ease"
+                             data-aos-delay="4900"
+                             class="input-box message-box cursor-scale small">
+                            <textarea id="Note"
+                                      name="Note"
+                                      type="password"
+                                      spellcheck="false"
+                                      required></textarea>
+                            <label>[Your Inquiries]</label>
+                        </div>
+
+                        <!-- Button animation Sign Up -->
+                        <button id="signup-button" type="submit" onclick=""location.href='@Url.Action("Contact", "Home")'"" formmethod="post" value="Contact" class="selectnone cursor-scale small ">
+                            <span>SUBMIT</span>
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24">
+                                <path d="M0 11c2.761.575 6.312 1.688 9 3.438 3.157-4.23 8.828-8.187 15-11.438-5.861 5.775-10.711 12.328-14 18.917-2.651-3.766-5.547-7.271-10-10.917z" />
+                            </svg>
+                        </button>
+                   
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Rounded Navbar -->
+
+    <nav data-aos="fade-down"
+         data-aos-duration="1200"
+         data-aos-easing="ease"
+         data-aos-delay="4900"
+         class="cursor-scale small">
+        <div class="nav-wrapper">
+            <div class="toggle-btn">
+                <i class="uil uil-times"></i>
+            </div>
+            <!-- Each href links to each different HTML page-->
+            <span style="--i: 1">
+                <a href="@Url.Action("About", "Home")">
+                    <i class="uil uil-chat-bubble-user"></i>
+                </a>
+            </span>
+            <span style="--i: 2">
+                <a href=@Url.Action("Contact", "Home")>
+                    <i class="uil uil-question-circle"></i>
+                </a>
+            </span>
+            <span style="--i: 3">
+                <a href=@Url.Action("MusicPlayer", "Home")>
+                    <i class="uil uil-headphones-alt"></i>
+                </a>
+            </span>
+            <span style="--i: 4">
+                <a href=@Url.Action("Login", "Home")>
+                    <i class="uil uil-signin"></i>
+                </a>
+            </span>
+            <span style="--i: 5">
+                <a href=@Url.Action("Index", "Home")>
+                    <i class="uil uil-house-user"></i>
+                </a>
+            </span>
+        </div>
+    </nav>
+
+    <!-- AOS animation library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="/Scripts/Fronend/ContactPageGuest.js"></script>
+    <script type="text/javascript" src="/Scripts/Fronend/vanilla-tilt.js"></script>
+</body>
+</html>

@@ -23,7 +23,7 @@ namespace WebApplication2.Areas.Admin.Controllers
     public class StaffTopicsController : Controller
     {
         private IdeaManagementEntities db = new IdeaManagementEntities();
-        private IHostingEnvironment _oIHostingEnvironment;
+  //      private IHostingEnvironment _oIHostingEnvironment;
 
 
         /*public FileResult GenerateAndDownloadZip()

@@ -1,0 +1,109 @@
+﻿
+@model IEnumerable<WebApplication2.Models.Idea>
+@using System.Web;
+@using WebApplication2.Models;
+@using System.Linq;
+
+
+@{
+    ViewBag.Title = "ViewIdea";
+    Layout = "~/Areas/Default/Views/Shared/_LayoutDefault.cshtml";
+    IdeaManagementEntities db = new IdeaManagementEntities();
+    List<ListIdea> ListIdeaOrder = new List<ListIdea>();
+    List<ListIdea> ListIdeaToAdd = new List<ListIdea>();
+
+}
+
+<h2>ViewIdea</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Text
+        </th>
+        <th>
+            FilePath
+        </th>
+        <th>
+            DateTime
+        </th>
+        <th>
+            CategoryName
+        </th>
+        <th>
+            UserName
+        </th>
+        <th>
+            TopicName
+        </th>
+        <th>    View </th>
+
+    </tr>
+
+    @{
+        foreach (var item in Model)
+        {
+
+            var Count = (from Item in db.Views
+                         where Item.IdeaId == item.Id
+                         select Item.VisitTime).Count();
+            if (Count == null)
+            {
+                Count = 0;
+            }
+            var ListIdea = (from Item in db.Reacts
+                            where Item.IdeaId == item.Id
+                            select new ListIdea
+                            {
+                                ListIdeaId = item.Id,
+                                ListIdeaFilePath = item.FilePath,
+                                ListIdeaText = item.Text,
+                                ListIdeaDateTime = item.Datetime,
+                                ListIdeaCategoryId = item.CategoryId.ToString(),
+                                ListIdeaUserId = item.UserId.ToString(),
+                                ListIdeaTopicId = item.TopicId.ToString(),
+                                ListIdeaReact1 = (int)Count
+                            }).ToList();
+
+
+            ListIdeaToAdd.AddRange(ListIdea);
+        }
+
+        ListIdeaOrder = ListIdeaToAdd.OrderByDescending(c => c.ListIdeaReact1).ToList();
+        foreach (var listIdea in ListIdeaOrder)
+        {
+            <tr>
+                <td>
+                    @listIdea.ListIdeaText
+                </td>
+                <td>
+                    @listIdea.ListIdeaFilePath
+                </td>
+                <td>
+                    @listIdea.ListIdeaDateTime
+                </td>
+                <td>
+                    @listIdea.ListIdeaCategoryId
+                </td>
+                <td>
+                    @listIdea.ListIdeaUserId
+                </td>
+                <td>
+                    @listIdea.ListIdeaTopicId
+                </td>
+                <td>
+                    @listIdea.ListIdeaReact1
+                </td>
+
+
+
+            </tr>
+
+        }
+    }
+
+
+
+</table>
+

@@ -1,0 +1,157 @@
+﻿@model WebApplication2.Models.Idea
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Default/Views/Shared/_LayoutDefault.cshtml";
+    var Comments = ViewBag.Comment;
+    int reactDisLike = ViewBag.react.React1;
+    reactDisLike = reactDisLike * -1;
+    ViewBag.ReactDisLike = reactDisLike;
+}
+<h2>Details</h2>
+
+<div>
+    <h4>Idea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <span> View</span>
+        </dt>
+
+        <dt>
+            @ViewBag.ViewCount
+        </dt>
+
+        <dt>
+            <span> Like </span>
+        </dt>
+
+        <dd>
+            @{
+                if (@ViewBag.React.React1 < 0)
+                {
+                    <span> 0 </span>
+                }
+                else
+                {
+                    @ViewBag.React.React1
+                }
+            }
+        </dd>
+
+        <dt>
+            @using (Html.BeginForm("LikeButton", "IdeasDefault", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId, reactReact = ViewBag.React.React1 }, FormMethod.Post))
+            {
+                <input type="submit" name="submit" value="Like" />
+            }
+        </dt>
+
+        <dt>
+            @using (Html.BeginForm("DisLikeButton", "IdeasDefault", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId, reactReact = ViewBag.React.React1 }, FormMethod.Post))
+            {
+                <input type="submit" name="submit" value="DisLike" />
+            }
+        </dt>
+
+
+        <dt>
+            <span> DisLike </span>
+        </dt>
+
+        <dd>
+            @{
+                if (@ViewBag.React.React1 > 0)
+                {
+                    <span> 0 </span>
+                }
+                else
+                {
+                    @ViewBag.ReactDisLike
+                }
+            }
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datetime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datetime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic.Name)
+        </dd>
+
+
+
+        @using (Html.BeginForm("InputComment", "IdeasDefault", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId, }, FormMethod.Post))
+        {
+            <label> Comment </label>
+            <input type="text" name="Text" />
+            <button type="submit"> comment</button>
+        }
+
+
+        <table class="table">
+            <tr>
+                <th> Time </th>
+                <th> Comment </th>
+            </tr>
+
+            @foreach (var Comment in Comments)
+            {
+                <tr>
+                    <td>@Comment.Datetime</td>
+                    <td>@Comment.Text</td>
+                </tr>
+            }
+
+        </table>
+
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.Topic.Id, name = ViewBag.Topic.Name, closureDate = ViewBag.Topic.ClosureDate, finalClosureDate = ViewBag.Topic.FinalClosureDate })
+</p>
