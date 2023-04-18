@@ -175,11 +175,9 @@ namespace WebApplication2.Areas.Default.Controllers
                 }
 
             }
+            return RedirectToRoute(new { controller = "IdeasDefault", action = "Index", id = TopicId, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });
 
 
-
-
-            return RedirectToRoute(new { controller = "Ideas", action = "Index", id = TopicId, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate }); ;
         }
 
 
@@ -216,9 +214,8 @@ namespace WebApplication2.Areas.Default.Controllers
 
             }
 
+            return RedirectToRoute(new { controller = "IdeasDefault", action = "Index", id = TopicId, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate }); ;
 
-            // return RedirectToAction("Index",new{ topicId = TopicId, name = Name, closureDate = ClosureDate, finalClosureDate = FinalClosureDate });
-            return RedirectToRoute(new { controller = "IdeasDefault", action = "Index", id = TopicId, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });
 
         }
 
@@ -343,14 +340,18 @@ namespace WebApplication2.Areas.Default.Controllers
                 // find in db where a coordinator have that ID department == userDepartment, sent the email notification to the coordinator
                 var CoordinatorOfDepartment = (from item in db.Users
                                                where item.DepartmentId == UserOfDepartment
-                                               select item.Email).ToString();
+                                               where item.RoleId == "Coordinator"
+                                               select item.Email).FirstOrDefault();
                 string subjectTiltle = "Email notification";
                 string body = "One Idea has been sent";
 
-               
+               if(CoordinatorOfDepartment != null)
+                {
                     WebMail.Send(CoordinatorOfDepartment, subjectTiltle, body, null, null, null, true, null, null, null, null, null, null);
 
-                
+                }
+
+
                 return RedirectToRoute(new { controller = "IdeasDefault", action = "Index", id = Id, name = Name, closuredate = ClosureDate, finalclosuredate = FinalClosureDate });
             }
 

@@ -787,6 +787,8 @@ body[data-aos-delay="3400"] [data-aos],
 
 
 
+
+
 table, th {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -820,7 +822,8 @@ table {
     border-collapse: collapse;
 }
 
-a {
+
+a.border-underline {
     font-family: "Arial", serif;
     font-size: 14px;
     color: #b9b4b4;
@@ -834,3 +837,42 @@ a {
     cursor: none;
     margin: 0 30px;
 }
+
+
+h5.MyH5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "acta-display", serif;
+    font-weight: 400;
+    font-size: 35px;
+    letter-spacing: 3px;
+    color: rgb(255, 255, 255);
+    filter: brightness(110%) contrast(200%);
+    width: 100%;
+    border-collapse: collapse;
+}
+
+h4.MyH4 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 100;
+    line-height: 23px;
+    margin-top: 25px;
+    font-family: "Arial", sans-serif;
+    color: rgb(226, 226, 226);
+    padding-left: 0px;
+    filter: none;
+}
+
+dl, dd {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 100;
+    line-height: 23px;
+    margin-top: 25px;
+    font-family: "Arial", sans-serif;
+    color: rgb(226, 226, 226);
+    padding-left: 0px;
+    filter: none;
+}
+

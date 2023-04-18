@@ -124,7 +124,7 @@
 
 
 
-        @using (Html.BeginForm("InputComment", "Ideas", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId,}, FormMethod.Post))
+        @using (Html.BeginForm("InputComment", "Ideas", new { IdeaId = ViewBag.React.IdeaId, TopicId = ViewBag.Topic.Id, Name = ViewBag.Topic.Name, ClosureDate = ViewBag.Topic.ClosureDate, FinalClosureDate = ViewBag.Topic.FinalClosureDate, UserId = ViewBag.React.UserId}, FormMethod.Post))
         { 
             <label> Comment </label>
             <input type="text" name="Text"  /> <button type="submit"> comment</button>

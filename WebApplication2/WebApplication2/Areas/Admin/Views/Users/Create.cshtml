@@ -2,67 +2,287 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    /* Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";*/
+    Layout = null;
 }
 
-<h2>Create</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Content/Frontend/CreateAccount.css" />
+    <link rel="icon" href="/Content/Frontend/Images/login.svg" />
+    <script defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <title>Login form</title>
+</head>
+<body>
+    <!--loader animation -->
+    <video class="loader_bg" image.png muted autoplay loop>
+        <source src="/Content/Frontend/Images/Preloading.mp4" type="video/mp4" />
+    </video>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>User</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+    <!-- Cursor GSAP -->
+    <div class="cursor"></div>
+
+    <!-- Video under Layer-Background -->
+    <video data-aos="fade"
+           data-aos-duration="1200"
+           data-aos-easing="ease-in-out"
+           data-aos-delay="4200"
+           autoplay
+           loop
+           muted
+           class="back-video">
+        <source src="/Content/Frontend/Images/Galaxy Background-2X-Rife-Rife4.0-60Fps(Webm).webm"
+                type="video/webm" />
+    </video>
+
+    <!-- Blur Dark layer-Background-->
+    <div class="detail_layer" style="display: block">
+        <!-- Box contains: Login & SignUp Form -->
+        <div data-aos="zoom-in"
+             data-aos-duration="1200"
+             data-aos-easing="ease-in-out"
+             data-aos-delay="4500"
+             style="position: absolute; top: 35%; left: 42%"
+             class="box">
+            <!-- Login Form -->
+            <form>
+                <h2 data-aos="fade-up"
+                    data-aos-duration="1200"
+                    data-aos-easing="ease"
+                    data-aos-delay="5300"
+                    class="cursor-scale small">
+                    ALREADY SIGNED IN
+                </h2>
+                <!-- Account Input -->
+                <div data-aos="fade-up"
+                     data-aos-duration="1200"
+                     data-aos-easing="ease"
+                     data-aos-delay="5600"
+                     class="inputBox cursor-scale small">
+                    <input type="text" required="required" />
+                    <label for="">Role: ADMIN</label>
+                    <i></i>
+                </div>
+                <!-- Password Input -->
+                <div data-aos="fade-up"
+                     data-aos-duration="1200"
+                     data-aos-easing="ease"
+                     data-aos-delay="5900"
+                     class="inputBox cursor-scale small">
+                    <input type="password" required="required" />
+                    <label for="" class="cursor-scale small"> Authority: Master</label>
+                    <i></i>
+                </div>
+
+                <!-- Login Button
+                <div data-aos="fade-up" data-aos-duration="1200"  data-aos-easing="ease" data-aos-delay="6500" class="box-login cursor-scale small"">
+                  <span class="background-login"></span>
+                  <input type="submit" value="LOGIN" />
+                </div> -->
+                <!-- End Login Form -->
+            </form>
+
+            <!-- Links to SignUp -->
+            <input type="checkbox" id="check1" />
+
+            <div class="links">
+                <label class="cursor-scale small" for="check1">
+                    <a data-aos="fade-up"
+                       data-aos-duration="1000"
+                       data-aos-easing="ease"
+                       data-aos-delay="6200">Registration</a>
+                </label>
             </div>
+
+            <div class="sidebar_menu1 cursor-scale">
+                <form id="signup-form" class="signup">
+                    <!-- Content Sign Up Form-->
+                    <h3 class="cursor-scale small">Create Account</h3>
+
+                    <div class="input-box cursor-scale small">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        <label>Email</label>
+                    </div>
+
+                    <div class="input-box cursor-scale small">
+                        @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
+                        <label>Full Name</label>
+                    </div>
+
+                    <div class="input-box cursor-scale small">
+                        <label>RoleId</label>
+                        @Html.EditorFor(model => model.RoleId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="input-box cursor-scale small">
+                        <label>DepartmentId</label>
+                        @Html.EditorFor(model => model.DepartmentId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="input-box cursor-scale small">
+                        <input class="form-control text-box single-line" id="Password" name="Password" type="password" value="">
+                        <label>Password</label>
+                    </div>
+
+                    <!-- Button animation Sign Up -->
+                    <button id="signup-button" class="selectnone cursor-scale small">
+                        <span>Sign Up</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24">
+                            <path d="M0 11c2.761.575 6.312 1.688 9 3.438 3.157-4.23 8.828-8.187 15-11.438-5.861 5.775-10.711 12.328-14 18.917-2.651-3.766-5.547-7.271-10-10.917z" />
+                        </svg>
+                    </button>
+
+                    <div class="close-button">
+                        <label for="check1">
+                            <i class="fas fa-times cursor-scale small"></i>
+                        </label>
+                    </div>
+                </form>
+
+                <!--Div Class="Sidebar_menu1"-->
+            </div>
+
+            <!--Div Class="box"-->
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-            </div>
+        <!-- Rounded Navbar -->
+        <div data-aos="fade-down"
+             data-aos-duration="1200"
+             data-aos-easing="ease"
+             data-aos-delay="6600"
+             class="container">
+            <nav class="cursor-scale small">
+                <div class="nav-wrapper">
+                    <div class="toggle-btn">
+                        <i class="uil uil-times"></i>
+                    </div>
+                    <!-- Each href links to each different HTML page-->
+                    <span style="--i: 1">
+                        <a href="#">
+                            <i class="uil uil-chat-bubble-user"></i>
+                        </a>
+                    </span>
+                    <span style="--i: 2">
+                        <a href="#">
+                            <i class="uil uil-question-circle"></i>
+                        </a>
+                    </span>
+                    <span style="--i: 3">
+                        <a href="#">
+                            <i class="uil uil-headphones-alt"></i>
+                        </a>
+                    </span>
+                    <span style="--i: 4">
+                        <a href="#">
+                            <i class="uil uil-signin"></i>
+                        </a>
+                    </span>
+                    <span style="--i: 5">
+                        <a href="#">
+                            <i class="uil uil-house-user"></i>
+                        </a>
+                    </span>
+                </div>
+            </nav>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DepartmentId, "DepartmentId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        <!--Div Class="Detail_layer"-->
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <!-- GSAP curosr script MUST BE PLACED IN THE END OF HTML BODY -->
+    <script defer src="/Scripts/Fronend/CreateAccount.js"></script>
+
+    <!-- AOS animation library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+@*
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>User</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleId, "RoleId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("RoleId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DepartmentId, "DepartmentId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+*@

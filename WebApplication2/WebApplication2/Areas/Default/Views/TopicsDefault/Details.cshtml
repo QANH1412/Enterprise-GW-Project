@@ -65,9 +65,9 @@
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "DepartmentsDefault", new { area = "Default" })">Department</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">Staff Submission</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default"})">Music Player</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default" })">Music Player</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default"})">About</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default" })">About</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "StatisticsDefault", new { area = "Default" })">Statistics</a>
                         @*
                             <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
@@ -102,7 +102,7 @@
                     <div class="burger"></div>
                     <nav>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default"})">Music Player</a>
+                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default" })">Music Player</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">Staff Submission</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
                         <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default" })">About Page</a>
@@ -114,15 +114,15 @@
                         @{ var account = (WebApplication2.Models.User)HttpContext.Current.Session["user"]; }
                         <a href="#" class="user-link cursor-scale small">Welcome, @account.Fullname</a>
                         <div class="dropdown-content">
-                            <a class="cursor-scale small" href="#">Account profile</a>
-                            <a class="cursor-scale small" href="#">Update profile</a>
+                            <a class="cursor-scale small" href="@Url.Action("Details", "UsersDefault", new { area = "Default" })">Account profile</a>
+                            <a class="cursor-scale small" href="@Url.Action("Edit", "UsersDefault", new { area = "Default", id = accountRole.Id })">Update profile</a>
                             <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
                         </div>
                     </div>
 
                 </div>
             </header>
-        }
+                            }
 
 
     }
@@ -176,7 +176,9 @@
                         <header>
                             <div class="inner">
                                 <nav>
-                                    <a class="border-underline cursor-scale small" href="/Default/TopicsDefault/Edit/Model.Id">Edit</a>
+                                    
+                                      <a class="border-underline cursor-scale small" href="@Url.Action("Edit", "TopicsDefault", new { area = "Default", id = Model.Id })">Edit</a>
+                                        
 
                                     <a class="border-underline cursor-scale small" href="/Default/TopicsDefault/Index">Back To List</a>
                                 </nav>
