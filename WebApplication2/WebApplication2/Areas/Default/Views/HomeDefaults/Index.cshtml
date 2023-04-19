@@ -117,8 +117,8 @@
                         @{ var account = (WebApplication2.Models.User)HttpContext.Current.Session["user"]; }
                         <a href="#" class="user-link cursor-scale small">Welcome, @account.Fullname</a>
                         <div class="dropdown-content">
-                            <a class="cursor-scale small" href="#">Account profile</a>
-                            <a class="cursor-scale small" href="#">Update profile</a>
+                            <a class="cursor-scale small" href="@Url.Action("Details", "UsersDefault", new { area = "Default" })">Account profile</a>
+                            <a class="cursor-scale small" href="@Url.Action("Edit", "UsersDefault", new { area = "Default", id = accountRole.Id })">Update profile</a>
                             <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
                         </div>
                     </div>

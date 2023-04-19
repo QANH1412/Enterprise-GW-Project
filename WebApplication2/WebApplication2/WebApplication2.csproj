@@ -302,6 +302,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Frontend\AboutPage.css" />
+    <Content Include="Content\Frontend\AccountProfileAdmin.css" />
     <Content Include="Content\Frontend\ContactPageGuest.css" />
     <Content Include="Content\Frontend\CreateAccount.css" />
     <Content Include="Content\Frontend\HomePageAdmin.css" />
@@ -425,6 +426,7 @@
     <Content Include="Areas\Default\Views\Shared\_LayoutDefaultTest.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Fronend\AboutPage.js" />
+    <Content Include="Scripts\Fronend\AccountProfileAdmin.js" />
     <Content Include="Scripts\Fronend\ContactPageGuest.js" />
     <Content Include="Scripts\Fronend\CreateAccount.js" />
     <Content Include="Scripts\Fronend\HomePageAdmin.js" />

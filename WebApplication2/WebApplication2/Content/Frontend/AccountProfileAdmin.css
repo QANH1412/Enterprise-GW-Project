@@ -1,0 +1,824 @@
+﻿@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500|Jost:400,500,600&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --ancient-white: rgb(248, 248, 248);
+    --ancient-grey-black-form: rgb(39, 39, 39);
+    --ancient-background-color: rgba(0, 0, 0, 0.877);
+    --ancient-input-inquiry: rgba(35, 36, 42, 1);
+    --ancient-span-inquiry: rgba(143, 143, 143, 1);
+    --ancient-login-color: rgba(52, 151, 238, 1);
+}
+
+/*======== Loading Page animation ========*/
+
+.loader_bg {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 1920px;
+    height: 1080px;
+    opacity: 1;
+    transition: 400ms ease 3000ms;
+}
+
+.loader_bg-finish {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*======== Modify cursor animation zoom  ========*/
+.cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--ancient-white);
+    transition: transform 300ms linear;
+    transform-origin: center center;
+    pointer-events: none;
+    z-index: 1000;
+    transition: 120ms linear;
+}
+
+.grow,
+.grow-small {
+    transform: scale(1.2);
+    background: var(--ancient-white);
+    mix-blend-mode: difference;
+    border: none;
+    filter: blur(0px);
+    opacity: 0.9;
+}
+
+.grow-small {
+    transform: scale(3.5);
+    mix-blend-mode: difference;
+    background: var(--ancient-white);
+    filter: blur(0px);
+    opacity: 1;
+}
+
+html {
+    scroll-behavior: smooth;
+    cursor: none;
+}
+
+body {
+    color: #2b2c48;
+    font-family: "Jost", sans-serif;
+    background-image: url("/Content/Frontend/Images/Gwen.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.card {
+    max-width: 650px;
+    margin: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    display: flex;
+    transition: all 800ms ease;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+    animation: Translate_Card 1150ms ease 3000ms forwards;
+}
+
+@keyframes Translate_Card {
+    0% {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/*======== Loading Page animation ========*/
+
+.loader_bg {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 1920px;
+    height: 1080px;
+    opacity: 1;
+    transition: 400ms ease 3000ms;
+}
+
+.loader_bg-finish {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*======= Customize for About Section Card Content ==========*/
+.card[data-state="#about"] {
+    transition: all 800ms ease;
+}
+
+    .card[data-state="#about"] .card-content {
+        position: relative;
+        top: -103px;
+        padding-bottom: 70px;
+    }
+
+        .card[data-state="#about"] .card-content .card-subtitle:nth-child(1) {
+            animation: TransitionFade 1.3s ease 600ms both;
+        }
+
+        .card[data-state="#about"] .card-content .card-desc:nth-child(2) {
+            animation: TransitionFade 1.3s ease 850ms both;
+        }
+
+        .card[data-state="#about"] .card-content .card-subtitle:nth-child(3) {
+            animation: TransitionFade 1.3s ease 1100ms both;
+        }
+
+        .card[data-state="#about"] .card-content .card-desc:nth-child(4) {
+            animation: TransitionFade 1.3s ease 1350ms both;
+        }
+
+        .card[data-state="#about"] .card-content .card-subtitle:nth-child(5) {
+            animation: TransitionFade 1.3s ease 1600ms both;
+        }
+
+        .card[data-state="#about"] .card-content .card-desc:nth-child(6) {
+            animation: TransitionFade 1.3s ease 1850ms both;
+        }
+
+    .card[data-state="#about"] .card-social a {
+        animation: TransitionFade 1.3s ease both;
+    }
+
+        .card[data-state="#about"] .card-social a:nth-child(1) {
+            animation-delay: 2600ms;
+        }
+
+        .card[data-state="#about"] .card-social a:nth-child(2) {
+            animation-delay: 2300ms;
+        }
+
+        .card[data-state="#about"] .card-social a:nth-child(3) {
+            animation-delay: 2000ms;
+        }
+
+        .card[data-state="#about"] .card-social a:nth-child(4) {
+            animation-delay: 2300ms;
+        }
+
+        .card[data-state="#about"] .card-social a:nth-child(5) {
+            animation-delay: 2600ms;
+        }
+
+/*======= Customize for Experience Section Card Content ==========*/
+.card[data-state="#experience"] {
+    min-width: 650px;
+    min-height: 700px;
+    transition: all 800ms ease;
+}
+
+    .card[data-state="#experience"] .card-content .card-subtitle {
+        animation: TransitionFade 1.5s both;
+    }
+
+    .card[data-state="#experience"] .card-content .card-timeline::after {
+        animation: TransitionFade 1.6s both;
+    }
+
+    .card[data-state="#experience"] .card-content .card-timeline .card-item {
+        opacity: 0;
+        animation: TransitionFade 1.6s both;
+    }
+
+        .card[data-state="#experience"]
+        .card-content
+        .card-timeline
+        .card-item:nth-child(1) {
+            animation-delay: 600ms;
+        }
+
+        .card[data-state="#experience"]
+        .card-content
+        .card-timeline
+        .card-item:nth-child(2) {
+            animation-delay: 800ms;
+        }
+
+        .card[data-state="#experience"]
+        .card-content
+        .card-timeline
+        .card-item:nth-child(3) {
+            animation-delay: 1000ms;
+        }
+
+        .card[data-state="#experience"]
+        .card-content
+        .card-timeline
+        .card-item:nth-child(4) {
+            animation-delay: 1200ms;
+        }
+
+    .card[data-state="#experience"] .card-content {
+        position: relative;
+    }
+
+/*======= Customize for Contact Section Card Content ==========*/
+.card[data-state="#contact"] {
+    min-width: 300px;
+    min-height: 600px;
+    transition: all 800ms ease;
+}
+
+    .card[data-state="#contact"] .card-content .card-subtitle {
+        animation: TransitionFade 1.5s ease both;
+    }
+
+    .card[data-state="#contact"] .card-content .card-contact-wrapper .card-contact {
+        animation: TransitionFade 1.5s ease both;
+    }
+
+        .card[data-state="#contact"]
+        .card-content
+        .card-contact-wrapper
+        .card-contact:nth-child(1) {
+            animation-delay: 600ms;
+        }
+
+        .card[data-state="#contact"]
+        .card-content
+        .card-contact-wrapper
+        .card-contact:nth-child(2) {
+            animation-delay: 750ms;
+        }
+
+        .card[data-state="#contact"]
+        .card-content
+        .card-contact-wrapper
+        .card-contact:nth-child(3) {
+            animation-delay: 1000ms;
+        }
+
+        .card[data-state="#contact"]
+        .card-content
+        .card-contact-wrapper
+        .card-contact:nth-child(4) {
+            animation-delay: 1250ms;
+        }
+
+        .card[data-state="#contact"]
+        .card-content
+        .card-contact-wrapper
+        .card-contact:nth-child(5) {
+            animation-delay: 1500ms;
+        }
+
+    .card[data-state="#contact"] .card[data-state="#contact"] .card-content {
+        position: relative;
+    }
+
+/*==== CSS adding is-active class to =====*/
+.card.is-active .card-header {
+    height: 80px;
+}
+
+.card.is-active .card-cover {
+    height: 250px;
+    top: 0px;
+}
+
+.card.is-active .card-avatar {
+    transform: none;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+}
+
+.card.is-active .card-fullname,
+.card.is-active .card-jobtitle {
+    left: 146px;
+    transform: none;
+}
+
+.card.is-active .card-fullname {
+    font-size: 19px;
+}
+
+.card.is-active .card-jobtitle {
+    bottom: 10px;
+    left: 140px;
+    letter-spacing: 1px;
+    font-size: 10px;
+}
+
+.card-header {
+    position: relative;
+    display: flex;
+    height: 200px;
+    flex-shrink: 0;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.card-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    height: 250px;
+    top: 0;
+    left: 0;
+    will-change: top;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    transform: scale(1.05);
+    transition: 0.5s;
+    animation: Translate_Card_Cover 1900ms ease 3000ms forwards;
+}
+
+@keyframes Translate_Card_Cover {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.card-cover:hover {
+    filter: blur(0px) brightness(105%) contrast(105%);
+    transform: scale(1.1);
+    transition: all 500ms ease;
+}
+
+.card-avatar {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 2px 28px rgba(87, 86, 86, 0.945);
+    border-radius: 50%;
+    -o-object-position: center;
+    object-position: center;
+    -o-object-fit: cover;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    left: 43%;
+    top: 18%;
+    animation: Translate_Card_Avatar 2400ms ease 3000ms forwards;
+}
+
+@keyframes Translate_Card_Avatar {
+    0% {
+        opacity: 0;
+        transform: translateY(120px);
+    }
+
+    50% {
+        opacity: 0;
+        transform: translateY(120px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.card-fullname {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 5px;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    white-space: nowrap;
+    text-transform: uppercase;
+    left: 50%;
+    animation: Translate_Card_Fullname 2600ms ease 3000ms forwards;
+}
+
+@keyframes Translate_Card_Fullname {
+    0% {
+        opacity: 0;
+        transform: translateY(120px) translateX(-50%);
+    }
+
+    54% {
+        opacity: 0;
+        transform: translateY(120px) translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(-10px) translateX(-50%);
+    }
+}
+
+.card-jobtitle {
+    position: absolute;
+    bottom: 0;
+    font-size: 18px;
+    white-space: nowrap;
+    font-weight: 400;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+    color: rgb(255, 255, 255);
+    left: 50%;
+    text-transform: uppercase;
+    animation: Translate_Card_Jobtitle 2800ms ease 3000ms forwards;
+}
+
+@keyframes Translate_Card_Jobtitle {
+    0% {
+        opacity: 0;
+        transform: translateY(120px) translateX(-50%);
+    }
+
+    57% {
+        opacity: 0;
+        transform: translateY(120px) translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(-7px) translateX(-50%);
+    }
+}
+
+.card-main {
+    position: relative;
+    flex: 1;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    flex-direction: column;
+    animation: Translate_Card_subtitle1 3600ms ease 3000ms forwards;
+}
+
+.card-subtitle {
+    font-weight: 500;
+    font-size: 18px;
+    margin: 8px 0px;
+}
+
+@keyframes Translate_Card_subtitle1 {
+    0% {
+        opacity: 0;
+    }
+
+    59% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-desc {
+    line-height: 1.4;
+    color: #636b6f;
+    font-size: 15px;
+    margin: 0;
+    font-weight: 400;
+    font-family: "DM Sans", sans-serif;
+}
+
+.card-social {
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    top: -150px;
+    width: 65%;
+    position: relative;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    left: 48%;
+    transform: translateX(-50%);
+}
+
+    .card-social svg {
+        fill: #a5b5ce;
+        width: 30px;
+        display: block;
+        transition: 350ms;
+    }
+
+    .card-social a {
+        color: #8797a1;
+        height: 42px;
+        width: 42px;
+        cursor: none;
+        font-size: 40px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 400ms ease;
+        background-color: rgba(93, 133, 193, 0.05);
+        border-radius: 50%;
+        margin: 0 20px;
+    }
+
+        .card-social a:hover svg {
+            fill: rgba(88, 88, 88, 1);
+            transition: all 350ms ease;
+            transform: translateY(-10px) scale(1.1);
+            filter: drop-shadow(0 0 10px rgb(104, 104, 104));
+        }
+
+        .card-social a:last-child {
+            margin-right: 0;
+        }
+
+.card-buttons {
+    display: flex;
+    background-color: #fff;
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    cursor: none;
+}
+
+    .card-buttons button.is-active {
+        color: #ffffff;
+        cursor: none;
+        background-size: 400% 400%;
+        background-image: linear-gradient( to right, #ff6e7f 0%, #bfe9ff 51%, #ff6e7f 100% );
+        animation: gradient 2000ms ease 300ms infinite;
+    }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.card-buttons button {
+    flex: 1 1 auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    font-size: 15px;
+    border: 0;
+    padding: 15px 5px;
+    cursor: pointer;
+    color: #5c5c6d;
+    font-family: "Jost", sans-serif;
+    font-weight: 500;
+    outline: 0;
+    z-index: 1;
+    cursor: none;
+    transition: all 400ms ease;
+}
+
+    .card-buttons button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        transform-origin: left;
+        background-image: linear-gradient( to right, #ed4264 0%, #ffedbc 100%, #ed4264 100% );
+        transition: all 400ms ease;
+        transform: scaleX(0);
+    }
+
+    .card-buttons button:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card-buttons button:hover {
+        color: white;
+        transition: all 600ms ease;
+    }
+
+.card-section {
+    display: none;
+}
+
+    .card-section.is-active {
+        display: block;
+        -webkit-animation: TransitionFade 1.6s both;
+        animation: TransitionFade 1.6s both;
+        position: relative;
+        top: 150px;
+    }
+
+@-webkit-keyframes TransitionFade {
+    0% {
+        opacity: 0;
+        transform: translatey(60px);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes TransitionFade {
+    0% {
+        opacity: 0;
+        transform: translatey(60px);
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes TransitionFadeLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.card-timeline {
+    margin-top: 30px;
+    position: relative;
+}
+
+    .card-timeline:after {
+        background: linear-gradient(to top, rgba(134, 214, 243, 0) 0%, #eb2c7b 100%);
+        content: "";
+        left: 42px;
+        width: 2px;
+        top: 0;
+        height: 100%;
+        position: absolute;
+    }
+
+.card-item {
+    position: relative;
+    padding-left: 60px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+    z-index: 1;
+}
+
+    .card-item:last-child {
+        padding-bottom: 5px;
+    }
+
+    .card-item:after {
+        content: attr(data-year);
+        width: 10px;
+        position: absolute;
+        top: 0;
+        left: 37px;
+        width: 8px;
+        height: 8px;
+        line-height: 0.6;
+        border: 2px solid #fff;
+        font-size: 12px;
+        text-indent: -35px;
+        border-radius: 50%;
+        color: rgba(0, 0, 0, 0.7);
+        background: linear-gradient(to bottom, #ffffff 0%, #ff4800 100%);
+    }
+
+.card-item-title {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.card-item-desc {
+    font-size: 13px;
+    color: #6f6f7b;
+    line-height: 1.5;
+    font-family: "DM Sans", sans-serif;
+}
+
+.card-contact-wrapper {
+    margin-top: 20px;
+}
+
+.card-contact {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #6f6f7b;
+    font-family: "DM Sans", sans-serif;
+    line-height: 1.6;
+    cursor: pointer;
+    cursor: none;
+}
+
+    .card-contact + .card-contact {
+        margin-top: 16px;
+    }
+
+    .card-contact svg {
+        flex-shrink: 0;
+        width: 30px;
+        min-height: 34px;
+        margin-right: 12px;
+        transition: 0.3s;
+        padding-right: 12px;
+        border-right: 1px solid #dfe2ec;
+    }
+
+.contact-me {
+    border: 0;
+    outline: none;
+    background: linear-gradient( to right, rgba(83, 200, 239, 0.8) 0%, rgba(81, 106, 204, 0.8) 96% );
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    color: #fff;
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Jost", sans-serif;
+    transition: 0.3s;
+}
+
+/*================= AoS animation =================*/
+
+body[data-aos-delay="3250"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="3250"] {
+    transition-delay: 3250ms;
+    transition-timing-function: cubic-bezier(0.15, 0, 0.2, 0.98);
+}
+
+[data-aos-delay="3600"] [data-aos],
+[data-aos="fade-down"][data-aos][data-aos-delay="3600"] {
+    transition-delay: 3600ms;
+}
+
+[data-aos-delay="3800"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="3800"] {
+    transition-delay: 3800ms;
+    transition-duration: 1200ms;
+}
+
+[data-aos-delay="4000"] [data-aos],
+[data-aos="fade-up"][data-aos][data-aos-delay="4000"] {
+    transition-delay: 4000ms;
+    transition-duration: 1200ms;
+}
+
+[data-aos-delay="6800"] [data-aos],
+[data-aos="fade-in"][data-aos][data-aos-delay="6800"] {
+    transition-delay: 6800ms;
+    transition-duration: 1200ms;
+    transition-timing-function: ease !important;
+}

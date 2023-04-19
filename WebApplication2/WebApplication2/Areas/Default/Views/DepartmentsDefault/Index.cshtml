@@ -1,9 +1,19 @@
 ﻿@model IEnumerable<WebApplication2.Models.Department>
+@using System.Linq;
+@using System.Net;
+@using System.Web;
+@using WebApplication2.Models;
 
 @{
     /*    Layout = "~/Areas/Default/Views/Shared/_LayoutDefault.cshtml";
     */
     var coordinator = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
+    IdeaManagementEntities db = new IdeaManagementEntities();
+
+    var departmentName = (from s in db.Departments
+                          where s.Id == coordinator.DepartmentId
+                          select s.Name).FirstOrDefault();
+
     Layout = null;
 }
 
@@ -141,13 +151,7 @@
                     <!-- Upper Slider Content  -->
                     <div class="meta cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">Staffs</div>
                     <h2>Index</h2>
-                    <p>
-                        <header>
-                            <div class="inner">
-                                <nav>    <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="/Default/TopicsDefault/Create">Create</a> </nav>
-                            </div>
-                        </header>
-                    </p>
+                  
 
                 </div>
 
@@ -156,12 +160,15 @@
                         <th>
                             <h5> Name</h5>
                         </th>
-                        
+
                     </tr>
 
                     <tr>
                         <td>
-                            <h4> @coordinator.DepartmentId</h4>  
+
+                            
+                            <h4>@departmentName </h4>
+
                         </td>
                     </tr>
                 </table>

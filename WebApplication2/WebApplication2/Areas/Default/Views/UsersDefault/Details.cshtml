@@ -9,235 +9,219 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Content/Frontend/AccountProfileAdmin.css" />
+    <link rel="icon" href="/Content/Frontend/Images/profile.svg" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="icon"
-          href="/Content/Frontend/Images/bulding.svg"
-          type="image/svg"
-          sizes="32x32" />
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
 
-    @{
-        var accountRole = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
-        if (accountRole.RoleId == "Coordinator")
-        {
-            <link rel="stylesheet" href="/Content/Frontend/layoutCoordinator.css" />
-        }
-        else
-        {
-            <link rel="stylesheet" href="/Content/Frontend/layoutDefault.css" />
-        }
-    }
-
-
-    <title>Homepage</title>
+    <title>Account Profile</title>
 </head>
 <body>
-
-    <!---- BackGround Loader ---->
-
+    <!-- GSAP Cursor-->
+    <div class="cursor"></div>
+    <!-- GSAP Cursor-->
     <video class="loader_bg" image.png muted autoplay loop>
         <source src="/Content/Frontend/Images/Preloading.mp4" type="video/mp4" ">
     </video>
 
-    <!--Cursor GSAP -->
-    <div class="cursor"></div>
-
-    <!---- Header --->
-
-    @{
-        accountRole = (WebApplication2.Models.User)HttpContext.Current.Session["user"];
-        if (accountRole.RoleId == "Coordinator")
-        {
-            <header data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">
-                <div class="inner">
-                    <div class="logo cursor-scale small" data-aos="fade-in" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3800">
-                        <img src="/Content/Frontend/Images/Remove_Gif_BackGround.gif" alt="Kawaii-logo" />
-                    </div>
-                    <div class="burger"></div>
-                    <nav>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "DepartmentsDefault", new { area = "Default" })">Department</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">Staff Submission</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default" })">Music Player</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default" })">About</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "StatisticsDefault", new { area = "Default" })">Statistics</a>
-                        @*
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">StaffSubmission</a>
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default"})">Music Player</a>
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("About", "HomeDefaults", new { area = "Default"})">AboutPage</a>
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "StatisticsDefault", new { area = "Default" })">Statistics</a>
-                            <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3500" href="@Url.Action("Index", "DepartmentsDefault", new { area = "Default" })"> YourDepartment</a>
-                        *@
-                    </nav>
-
-                    <div class="dropdown">
-                        <a href="#" class="user-link cursor-scale small">Coordinator</a>
-                        <div class="dropdown-content">
-                            <a class="cursor-scale small" href="#">Account profile</a>
-                            <a class="cursor-scale small" href="#">Update profile</a>
-                            <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
-                        </div>
-                    </div>
-
-                </div>
-            </header>
-        }
-        else
-        {
-            <header data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">
-                <div class="inner">
-                    <div class="logo cursor-scale small" data-aos="fade-in" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3800">
-                        <img src="/Content/Frontend/Images/Remove_Gif_BackGround.gif" alt="Kawaii-logo" />
-                    </div>
-                    <div class="burger"></div>
-                    <nav>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("Index", "HomeDefaults", new { area = "Default" })">Homepage</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("MusicPlayer", "HomeDefaults", new { area = "Default" })">Music Player</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2600" href="@Url.Action("Index", "StaffTopicsDefault", new { area = "Default" })">Staff Submission</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2900" href="@Url.Action("Index", "ListIdeasDefault", new { area = "Default" })">Rating idea</a>
-                        <a class="border-underline cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="3200" href="@Url.Action("About", "HomeDefaults", new { area = "Default" })">About Page</a>
-
-
-                    </nav>
-
-                    <div class="dropdown">
-                        @{ account = (WebApplication2.Models.User)HttpContext.Current.Session["user"]; }
-                        <a href="#" class="user-link cursor-scale small">Welcome, @account.Fullname</a>
-                        <div class="dropdown-content">
-                            <a class="cursor-scale small" href="@Url.Action("Details", "UsersDefault", new { area = "Default" })">Account profile</a>
-                            <a class="cursor-scale small" href="@Url.Action("Edit", "UsersDefault", new { area = "Default", id = accountRole.Id })">Update profile</a>
-                            <a class="cursor-scale small" href="~/Home/Logout">Logout</a>
-                        </div>
-                    </div>
-
-                </div>
-            </header>
-            }
-
-
-    }
-
-
-
-
-
-
-
-    <!--  BODY -->
-    <main>
-        <div id="slider" data-aos="fade-up" data-aos-duration="1400" data-aos-easing="ease" data-aos-delay="3400">
-            <div class="slider-inner">
-                <div id="slider-content" data-aos-unset="opacity visibility" data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease" data-aos-delay="3800">
-                    <!-- Upper Slider Content  -->
-                    <div class="meta cursor-scale small" data-aos="fade-down" data-aos-duration="1200" data-aos-easing="ease" data-aos-delay="2300">Staffs</div>
-                    <h2>Detail</h2>
-
-                </div>
-                <!--Detail form-->
-                <div>
-                    <h4>User</h4>
-                    <hr />
-                    <dl class="dl-horizontal">
-                        <dt>
-                            <h4 class="MyH4">FullName</h4>
-                        </dt>
-
-                        <dd>
-                            @account.Fullname
-                        </dd>
-
-                        <dt>
-                            <h4 class="MyH4">Email</h4>
-                        </dt>
-
-                        <dd>
-                            @account.Email
-                        </dd>
-
-                        <dt>
-                            <h4 class="MyH4">Password</h4>
-                        </dt>
-
-                        <dd>
-                            @account.Password
-                        </dd>
-
-                        <dt>
-                            <h4 class="MyH4">Department Name</h4>
-                        </dt>
-
-                        <dd>
-                            @account.DepartmentId
-                        </dd>
-
-                        <dt>
-                            <h4 class="MyH4">Role Name</h4>
-                        </dt>
-
-                        <dd>
-                            @account.RoleId
-                        </dd>
-
-                    </dl>
-
-                    <p>
-                        <header>
-                            <div class="inner">
-                                <nav>
-                                    @{ 
-                                    <a class="border-underline cursor-scale small" href="/Default/TopicsDefault/Edit/@account.Id">Edit</a>
-                                        }
-                                </nav>
-                            </div>
-                        </header>
+    <div class="card" data-state="#about">
+        <div class="card-header">
+            <div class="card-cover"
+                 style="background-image: url('/Content/Frontend/Images/desk.jpg')"></div>
+            <img class="card-avatar" src="/Content/Frontend/Images/Profile.png" alt="avatar" />
+            <h1 class="card-fullname">Terra Kahn</h1>
+            <h2 class="card-jobtitle">UI/UX web Developer</h2>
+        </div>
+        <div class="card-main">
+            <div class="card-section is-active" id="about">
+                <div class="card-content cursor-scale">
+                    <div class="card-subtitle">CAREER</div>
+                    <p class="card-desc">
+                        As a front-end developer with 4 years of experience, I have
+                        developed and maintained various design and templates and
+                        user-friendly websites using HTML, CSS, and JavaScript. I possess
+                        a strong understanding of web development principles and stay
+                        up-to-date with the latest industry trends and technologies to
+                        deliver high-quality, efficient, and scalable solutions.
+                    </p>
+                    <div class="card-subtitle">EDUCATION</div>
+                    <p class="card-desc">
+                        As a self-taught front-end developer, I have gained a strong
+                        foundation in web development through online courses and tutorials
+                        on platforms like Google, YouTube, Reddit, Codecademy, and Khan
+                        Academy. My dedication to continuous learning and exploration of
+                        new technologies allows me to stay up-to-date with the latest
+                        industry trends.
+                    </p>
+                    <div class="card-subtitle">BACKGROUND CAREER</div>
+                    <p class="card-desc">
+                        As an experienced front-end developer, I have worked with multiple
+                        well-known companies across various industries, including Apple,
+                        Nike, and Amazon. At Apple, I contributed to the development of a
+                        user-friendly and responsive e-commerce platform, resulting in a
+                        20% increase in online sales.
                     </p>
                 </div>
-                    
-
-
-
+                <div class="card-social">
+                    <a class="cursor-scale small" href="#">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.997 3.985h2.191V.169C17.81.117 16.51 0 14.996 0c-3.159 0-5.323 1.987-5.323 5.639V9H6.187v4.266h3.486V24h4.274V13.267h3.345l.531-4.266h-3.877V6.062c.001-1.233.333-2.077 2.051-2.077z" />
+                        </svg>
+                    </a>
+                    <a class="cursor-scale small" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M512 97.248c-19.04 8.352-39.328 13.888-60.48 16.576 21.76-12.992 38.368-33.408 46.176-58.016-20.288 12.096-42.688 20.64-66.56 25.408C411.872 60.704 384.416 48 354.464 48c-58.112 0-104.896 47.168-104.896 104.992 0 8.32.704 16.32 2.432 23.936-87.264-4.256-164.48-46.08-216.352-109.792-9.056 15.712-14.368 33.696-14.368 53.056 0 36.352 18.72 68.576 46.624 87.232-16.864-.32-33.408-5.216-47.424-12.928v1.152c0 51.008 36.384 93.376 84.096 103.136-8.544 2.336-17.856 3.456-27.52 3.456-6.72 0-13.504-.384-19.872-1.792 13.6 41.568 52.192 72.128 98.08 73.12-35.712 27.936-81.056 44.768-130.144 44.768-8.608 0-16.864-.384-25.12-1.44C46.496 446.88 101.6 464 161.024 464c193.152 0 298.752-160 298.752-298.688 0-4.64-.16-9.12-.384-13.568 20.832-14.784 38.336-33.248 52.608-54.496z" />
+                        </svg>
+                    </a>
+                    <a class="cursor-scale small" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24"
+                             fill="currentColor">
+                            <path d="M23.62 7.523c-.265-.967-1.04-1.719-2.027-1.982C19.52 5 12 5 12 5s-7.52 0-9.593.54c-.988.264-1.762 1.015-2.027 1.982C0 9.23 0 12 0 12s0 2.77.38 4.477c.265.967 1.04 1.718 2.027 1.982C4.48 19 12 19 12 19s7.52 0 9.593-.54c.988-.264 1.762-1.015 2.027-1.982.38-1.707.38-4.477.38-4.477s0-2.77-.38-4.477zM9.75 15.75V8.25l6 3-6 3z" />
+                        </svg>
+                    </a>
+                    <a class="cursor-scale small" href="#">
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M301 256c0 24.852-20.148 45-45 45s-45-20.148-45-45 20.148-45 45-45 45 20.148 45 45zm0 0" />
+                            <path d="M332 120H180c-33.086 0-60 26.914-60 60v152c0 33.086 26.914 60 60 60h152c33.086 0 60-26.914 60-60V180c0-33.086-26.914-60-60-60zm-76 211c-41.355 0-75-33.645-75-75s33.645-75 75-75 75 33.645 75 75-33.645 75-75 75zm86-146c-8.285 0-15-6.715-15-15s6.715-15 15-15 15 6.715 15 15-6.715 15-15 15zm0 0" />
+                            <path d="M377 0H135C60.562 0 0 60.563 0 135v242c0 74.438 60.563 135 135 135h242c74.438 0 135-60.563 135-135V135C512 60.562 451.437 0 377 0zm45 332c0 49.625-40.375 90-90 90H180c-49.625 0-90-40.375-90-90V180c0-49.625 40.375-90 90-90h152c49.625 0 90 40.375 90 90zm0 0" />
+                        </svg>
+                    </a>
+                    <a class="cursor-scale small" href="#">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 002.882 0z" />
+                        </svg>
+                    </a>
                 </div>
+            </div>
+            <div class="card-section" id="experience">
+                <div class="card-content cursor-scale">
+                    <div class="card-subtitle">WORK EXPERIENCE</div>
+                    <div class="card-timeline">
+                        <div class="card-item" data-year="2020">
+                            <div class="card-item-title">
+                                Front-end Developer & FreeLancer at <span>LinkedIn</span>
+                            </div>
+                            <div class="card-item-desc">
+                                Participated in an online course on HTML, CSS, and JavaScript,
+                                solidifying foundation. Developed a personal project, a low
+                                level designed responsive website.
+                            </div>
+                        </div>
+                        <div class="card-item" data-year="2021">
+                            <div class="card-item-title">
+                                UI/UX Developer at <span>Discord</span>
+                            </div>
+                            <div class="card-item-desc">
+                                Developed a custom WordPress theme for a client using PHP,
+                                HTML, and CSS integrating with third-party APIs and improving
+                                website speed and performance.<
+                            </div>
+                        </div>
+                        <div class="card-item" data-year="2022">
+                            <div class="card-item-title">
+                                Leader of junior frontend at <span>Discord</span>
+                            </div>
+                            <div class="card-item-desc">
+                                Received recognition from management for consistently meeting
+                                project deadlines and exceeding client expectations.
+                            </div>
+                        </div>
+                        <div class="card-item" data-year="2023">
+                            <div class="card-item-title">
+                                Full-Stack Developer at <span>Riot</span>
+                            </div>
+                            <div class="card-item-desc">
+                                Mentored junior front-end developers, providing guidance on
+                                industry trends, technologies, and best practices to support
+                                their professional growth and development.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-section" id="contact">
+                <div class="card-content cursor-scale">
+                    <div class="card-subtitle">CONTACT</div>
+                    <div class="card-contact-wrapper">
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Viet Nam, Ho Chi Minh City, Tan Binh District, Ward 12, 8800
+                        </div>
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 viewbox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                            </svg>(+84) 0919 624 485
+                        </div>
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                <path d="M22 6l-10 7L2 6" />
+                            </svg>
+                            TerraKahn@gmail.com
+                        </div>
+                        <div class="card-contact">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M12 0C5.373 0 0 5.373 0 12c0 6.102 4.474 11.164 10.343 11.97v-8.487H7.467v-3.3h2.876v-2.53c0-2.854 1.733-4.404 4.276-4.404 1.234 0 2.292.092 2.6.133v2.98l-1.78.001c-1.398 0-1.666.666-1.666 1.63v2.14h3.327l-.435 3.3h-2.892v8.488C19.526 23.164 24 18.102 24 12c0-6.627-5.373-12-12-12z" />
+                            </svg>
 
+                            cCchuong.ba.5556
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-buttons">
+                <button data-section="#about" class="is-active cursor-scale small">
+                    ABOUT
+                </button>
+                <button data-section="#experience" class="cursor-scale small">
+                    EXPERIENCE
+                </button>
+                <button data-section="#contact" class="cursor-scale small">
+                    CONTACT
+                </button>
             </div>
         </div>
+    </div>
 
-
-
-    </main>
-
-
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
-    <script src="/Scripts/Fronend/HomePageDefault.js"></script>
-
+    <script src="/Scripts/Fronend/AccountProfileAdmin.js"></script>
+    <!-- AOS animation library -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-40525870-5');
-
-        AOS.init();</script>
-
-
-
+        AOS.init();
+    </script>
 </body>
 </html>
 
@@ -246,56 +230,3 @@
 
 
 
-@*
-    <h2>Details</h2>
-
-    <div>
-        <h4>User</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                full name
-            </dt>
-
-            <dd>
-                @account.Fullname
-            </dd>
-
-            <dt>
-                Email
-            </dt>
-
-            <dd>
-                @account.Email
-            </dd>
-
-            <dt>
-                Password
-            </dt>
-
-            <dd>
-               @account.Password
-            </dd>
-
-            <dt>
-               Department Name
-            </dt>
-
-            <dd>
-                @account.DepartmentId
-            </dd>
-
-            <dt>
-               Role Name
-            </dt>
-
-            <dd>
-                @account.RoleId
-            </dd>
-
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = account.Id }) |
-    </p>
-*@
